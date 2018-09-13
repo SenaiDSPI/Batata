@@ -38,11 +38,14 @@ gem 'jbuilder', '~> 2.5'
 # Bootstrap 4
 gem 'bootstrap', '~> 4.1.3'
 
+# Simple Form
+gem 'simple_form'
 
+# Devise
+gem 'devise'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+
 end
 
 group :development do
