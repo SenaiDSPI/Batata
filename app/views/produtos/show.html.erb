@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @produto.nome %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @produto.tipo %>
+</p>
+
+<p>
+  <strong>Peso:</strong>
+  <%= @produto.peso %>
+</p>
+
+<p>
+  <strong>Linha:</strong>
+  <%= @produto.linha %>
+</p>
+
+<p>
+  <strong>Coluna:</strong>
+  <%= @produto.coluna %>
+</p>
+
+<p>
+  <strong>Validade:</strong>
+  <%= @produto.validade %>
+</p>
+
+<p>
+  <strong>Quantidade minima:</strong>
+  <%= @produto.quantidade_minima %>
+</p>
+
+<p>
+  <strong>Quantidade maxima:</strong>
+  <%= @produto.quantidade_maxima %>
+</p>
+
+<p>
+  <strong>Quantidade atual:</strong>
+  <%= @produto.quantidade_atual %>
+</p>
+
+<p>
+  <strong>Codigo barra:</strong>
+  <%= @produto.codigo_barra %>
+</p>
+
+<p>
+  <strong>Data entrada:</strong>
+  <%= @produto.data_entrada %>
+</p>
+
+<p>
+  <strong>Ultima entrada:</strong>
+  <%= @produto.ultima_entrada %>
+</p>
+
+<p>
+  <strong>Ultima retirada:</strong>
+  <%= @produto.ultima_retirada %>
+</p>
+
+<p>
+  <strong>Ultima devolucao:</strong>
+  <%= @produto.ultima_devolucao %>
+</p>
+
+<%= link_to 'Edit', edit_produto_path(@produto) %> |
+<%= link_to 'Back', produtos_path %>

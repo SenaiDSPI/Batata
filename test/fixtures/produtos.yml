@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  tipo: MyString
+  peso: 
+  linha: 
+  coluna: 
+  validade: 2018-09-13
+  quantidade_minima: 
+  quantidade_maxima: 
+  quantidade_atual: 
+  codigo_barra: MyString
+  data_entrada: 2018-09-13
+  ultima_entrada: 2018-09-13
+  ultima_retirada: 2018-09-13
+  ultima_devolucao: 2018-09-13
+
+two:
+  nome: MyString
+  tipo: MyString
+  peso: 
+  linha: 
+  coluna: 
+  validade: 2018-09-13
+  quantidade_minima: 
+  quantidade_maxima: 
+  quantidade_atual: 
+  codigo_barra: MyString
+  data_entrada: 2018-09-13
+  ultima_entrada: 2018-09-13
+  ultima_retirada: 2018-09-13
+  ultima_devolucao: 2018-09-13

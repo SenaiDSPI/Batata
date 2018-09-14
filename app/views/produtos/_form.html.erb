@@ -1,0 +1,26 @@
+
+<%= simple_form_for(@produto) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :nome %>
+    <%= f.input :tipo %>
+    <%= f.input :peso %>
+    <%= f.input :linha %>
+    <%= f.input :coluna %>
+    <%= f.input :validade %>
+    <%= f.input :quantidade_minima %>
+    <%= f.input :quantidade_maxima %>
+    <%= f.input :quantidade_atual %>
+    <%= f.input :codigo_barra %>
+    <%= f.input :data_entrada %>
+    <%= f.input :ultima_entrada %>
+    <%= f.input :ultima_retirada %>
+    <%= f.input :ultima_devolucao %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
