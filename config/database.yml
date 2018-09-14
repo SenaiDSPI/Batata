@@ -10,11 +10,5 @@ development:
   username: postgres
   password: admin
 
-test:
-  <<: *default
-  database: batata
-  username: postgres
-  password: admin
-
 production:
   <<: *default
