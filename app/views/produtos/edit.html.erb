@@ -1,6 +1,16 @@
-<h1>Editing Produto</h1>
+<div class="card bg-dark text-white mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+			<h1>Editar produto</h1>
+    </div>
+  </div>
 
-<%= render 'form', produto: @produto %>
+  <div class="card-body">
+		<%= render 'form', produto: @produto %>
 
-<%= link_to 'Show', @produto %> |
-<%= link_to 'Back', produtos_path %>
+		<div class="shared">
+			<%= link_to 'Visualizar', @produto %> |
+			<%= link_to 'Voltar', produtos_path %>
+		</div>
+	</div>
+</div>

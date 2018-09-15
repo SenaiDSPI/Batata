@@ -27,7 +27,7 @@
 
 <p>
   <strong>Validade:</strong>
-  <%= @produto.validade %>
+  <%= @produto.validade.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
@@ -36,7 +36,7 @@
 </p>
 
 <p>
-  <strong>Quantidade maxima:</strong>
+  <strong>Quantidade máxima:</strong>
   <%= @produto.quantidade_maxima %>
 </p>
 
@@ -46,7 +46,7 @@
 </p>
 
 <p>
-  <strong>Codigo barra:</strong>
+  <strong>Código barra:</strong>
   <%= @produto.codigo_barra %>
 </p>
 
@@ -56,19 +56,19 @@
 </p>
 
 <p>
-  <strong>Ultima entrada:</strong>
+  <strong>Última entrada:</strong>
   <%= @produto.ultima_entrada %>
 </p>
 
 <p>
-  <strong>Ultima retirada:</strong>
+  <strong>Última retirada:</strong>
   <%= @produto.ultima_retirada %>
 </p>
 
 <p>
-  <strong>Ultima devolucao:</strong>
+  <strong>Última devolução:</strong>
   <%= @produto.ultima_devolucao %>
 </p>
 
-<%= link_to 'Edit', edit_produto_path(@produto) %> |
-<%= link_to 'Back', produtos_path %>
+<%= link_to 'Editar', edit_produto_path(@produto) %> |
+<%= link_to 'Voltar', produtos_path %>
