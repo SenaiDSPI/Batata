@@ -4,23 +4,23 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :nome %>
-    <%= f.input :tipo %>
-    <%= f.input :peso %>
-    <%= f.input :linha %>
-    <%= f.input :coluna %>
-    <%= f.input :validade %>
-    <%= f.input :quantidade_minima %>
-    <%= f.input :quantidade_maxima %>
-    <%= f.input :quantidade_atual %>
-    <%= f.input :codigo_barra %>
-    <%= f.input :data_entrada %>
-    <%= f.input :ultima_entrada %>
-    <%= f.input :ultima_retirada %>
-    <%= f.input :ultima_devolucao %>
+    <%= f.input :nome, label: "Nome:", input_html: { required: true } %>
+    <%= f.input :tipo ,as: :select, collection: [['0', 'Consumivel'], ['1', 'Reutilizavel']],
+                label_method: :second, value_method: :second, prompt: "Escolha o tipo:", required: "required" %>
+    <%= f.input :peso, label: "Peso:", required: "true" %>
+    <%= f.input :linha, label: "Linha:", required: "true" %>
+    <%= f.input :coluna, label: "Coluna:", required: "true" %>
+    <%= f.input :codigo_barra, label: "Codigo de barras:", required: "true" %>
+    <%= f.input :validade, label: "Validade:", start_year: Date.today.year - 120, end_year: Date.today.year, 
+                order: [:day, :month, :year], required: "true" %>
+    <%= f.input :quantidade_minima, label: "Quantidade minima:", required: "true" %>
+    <%= f.input :quantidade_maxima, label: "Quantidade maxima:", required: "true" %>
+    <%= f.input :quantidade_atual, label: "Quantidade atual:", required: "true" %>
+    <%= f.input :data_entrada, label: "Data de entrada:", start_year: Date.today.year - 120, end_year: Date.today.year, 
+                order: [:day, :month, :year], required: "true" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Enviar" %>
   </div>
 <% end %>

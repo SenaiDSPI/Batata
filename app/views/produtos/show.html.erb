@@ -1,74 +1,85 @@
 <p id="notice"><%= notice %></p>
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1><%= @produto.nome %></h1>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <p>
+      <strong>Tipo:</strong>
+      <%= @produto.tipo %>
+    </p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @produto.nome %>
-</p>
+    <p>
+      <strong>Peso:</strong>
+      <%= @produto.peso %>
+      <strong>Kg</strong>
+    </p>
 
-<p>
-  <strong>Tipo:</strong>
-  <%= @produto.tipo %>
-</p>
+    <p>
+      <strong>Linha:</strong>
+      <%= @produto.linha %>
+    </p>
 
-<p>
-  <strong>Peso:</strong>
-  <%= @produto.peso %>
-</p>
+    <p>
+      <strong>Coluna:</strong>
+      <%= @produto.coluna %>
+    </p>
 
-<p>
-  <strong>Linha:</strong>
-  <%= @produto.linha %>
-</p>
+    <p>
+      <strong>Validade:</strong>
+      <% if @produto.validade != nil %>
+        <%= @produto.validade.strftime("%d/%m/%Y") %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Coluna:</strong>
-  <%= @produto.coluna %>
-</p>
+    <p>
+      <strong>Quantidade minima:</strong>
+      <%= @produto.quantidade_minima %>
+    </p>
 
-<p>
-  <strong>Validade:</strong>
-  <%= @produto.validade.strftime("%d/%m/%Y") %>
-</p>
+    <p>
+      <strong>Quantidade máxima:</strong>
+      <%= @produto.quantidade_maxima %>
+    </p>
 
-<p>
-  <strong>Quantidade minima:</strong>
-  <%= @produto.quantidade_minima %>
-</p>
+    <p>
+      <strong>Quantidade atual:</strong>
+      <%= @produto.quantidade_atual %>
+    </p>
 
-<p>
-  <strong>Quantidade máxima:</strong>
-  <%= @produto.quantidade_maxima %>
-</p>
+    <p>
+      <strong>Data entrada:</strong>
+      <% if @produto.data_entrada != nil %>
+        <%= @produto.data_entrada.strftime("%d/%m/%Y") %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Quantidade atual:</strong>
-  <%= @produto.quantidade_atual %>
-</p>
+    <p>
+      <strong>Última entrada:</strong>
+      <% if @produto.ultima_entrada != nil %>
+        <%= @produto.ultima_entrada.strftime("%d/%m/%Y") %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Código barra:</strong>
-  <%= @produto.codigo_barra %>
-</p>
+    <p>
+      <strong>Última retirada:</strong>
+      <% if @produto.ultima_retirada != nil %>
+        <%= @produto.ultima_retirada.strftime("%d/%m/%Y") %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Data entrada:</strong>
-  <%= @produto.data_entrada %>
-</p>
-
-<p>
-  <strong>Última entrada:</strong>
-  <%= @produto.ultima_entrada %>
-</p>
-
-<p>
-  <strong>Última retirada:</strong>
-  <%= @produto.ultima_retirada %>
-</p>
-
-<p>
-  <strong>Última devolução:</strong>
-  <%= @produto.ultima_devolucao %>
-</p>
-
-<%= link_to 'Editar', edit_produto_path(@produto) %> |
-<%= link_to 'Voltar', produtos_path %>
+    <p>
+      <strong>Última devolução:</strong>
+      <% if @produto.ultima_devolucao != nil %>
+        <%= @produto.ultima_devolucao.strftime("%d/%m/%Y") %>
+      <% end %>
+    </p>
+    <div class="shared">
+      <%= link_to 'Editar', edit_produto_path(@produto) %> |
+      <%= link_to 'Voltar', produtos_path %>
+    </div>
+  </div>
+</div>
