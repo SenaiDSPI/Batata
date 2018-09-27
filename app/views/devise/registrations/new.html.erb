@@ -17,7 +17,6 @@
         <%= f.input :telefone, label: "Telefone", required: true %>
         <%= f.input :nivel_acesso ,as: :select, collection: [['0', 'Requerente'], ['1', 'almocharife'], ['2', 'admin']],
                 label_method: :second, value_method: :second, prompt: "Escolha o tipo:", required: "required" %>
-        <%= f.input :nivel_acesso, label: "Nível de acesso", required: true %>
         <%= f.input :password, label: "Senha", required: true, hint: ("Mínimo de #{@minimum_password_length} caracteres") %>
         <%= f.input :password_confirmation, label: "Confirmar senha", required: true %>
       </div>
