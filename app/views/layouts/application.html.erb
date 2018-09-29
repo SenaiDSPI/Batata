@@ -14,13 +14,16 @@
     <link rel="shortcut icon" href="/assets/batata.png" type="image/png">
   </head>
 
-  <body>
-    <% if(current_user) %>
-      <%= render "layouts/header" %>
-    <% end %>
+  <body class="theme-dark">
+    <div class="wrapper">
+      <% if(current_user) %>
+        <%= render "layouts/header" %>
+      <% else %>
+        <div class="container">
+      <% end %>
 
-  	<div class="container">
-    	<%= yield %>
-  	</div>
+      	<%= yield %>
+      </div>
+    </div>
   </body>
 </html>

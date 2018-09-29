@@ -39,7 +39,7 @@ gem 'simple_form'
 gem 'devise'
 
 # Font-Awesome
-gem "font-awesome-rails"
+gem "font_awesome5_rails"
 
 # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
 gem 'web-console', '>= 3.3.0'

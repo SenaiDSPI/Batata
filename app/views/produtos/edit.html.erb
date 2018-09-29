@@ -1,0 +1,16 @@
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+			<h1>Editar produto</h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+		<%= render 'form', produto: @produto %>
+
+		<div class="shared">
+			<%= link_to 'Visualizar', @produto %> |
+			<%= link_to 'Voltar', produtos_path %>
+		</div>
+	</div>
+</div>
