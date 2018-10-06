@@ -29,6 +29,11 @@
     </p>
 
     <p>
+      <strong>Codigo de barras:</strong>
+      <%= @produto.codigo_barra %>
+    </p>    
+
+    <p>
       <strong>Validade:</strong>
       <% if @produto.validade != nil %>
         <%= @produto.validade.strftime("%d/%m/%Y") %>
@@ -52,28 +57,28 @@
 
     <p>
       <strong>Data entrada:</strong>
-      <% if @produto.data_entrada != nil %>
+      <% if @produto.data_entrada != nil and @produto.data_entrada != "" %>
         <%= @produto.data_entrada.strftime("%d/%m/%Y") %>
       <% end %>
     </p>
 
     <p>
       <strong>Última entrada:</strong>
-      <% if @produto.ultima_entrada != nil %>
+      <% if !@produto.ultima_entrada.nil? and @produto.ultima_entrada != "" %>
         <%= @produto.ultima_entrada.strftime("%d/%m/%Y") %>
       <% end %>
     </p>
 
     <p>
       <strong>Última retirada:</strong>
-      <% if @produto.ultima_retirada != nil %>
+      <% if !@produto.ultima_retirada.nil? and @produto.ultima_retirada != "" %>
         <%= @produto.ultima_retirada.strftime("%d/%m/%Y") %>
       <% end %>
     </p>
 
     <p>
       <strong>Última devolução:</strong>
-      <% if @produto.ultima_devolucao != nil %>
+      <% if @produto.ultima_devolucao != nil and @produto.ultima_devolucao != "" %>
         <%= @produto.ultima_devolucao.strftime("%d/%m/%Y") %>
       <% end %>
     </p>

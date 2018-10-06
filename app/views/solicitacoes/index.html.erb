@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1>Solicitacoes</h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-striped table-bordered" style="width:100%">
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Usuário</th>
+          <th>Data da solicitação</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @solicitacoes.each do |solicitacao| %>
+          <tr>
+            <td><%= solicitacao.titulo %></td>
+            <td><%= solicitacao.user.nome %></td>
+            <% if !solicitacao.data_solicitacao.nil? %>
+              <td><%= solicitacao.data_solicitacao.strftime("%d/%m/%Y %H:%M") %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td><%= solicitacao.status %></td>
+            <td><%= link_to 'ver', solicitacao %></td>
+            <td><%= link_to 'editar', edit_solicitacao_path(solicitacao) %></td>
+            <td><%= link_to 'apagar', solicitacao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="shared">
+    <%= link_to 'Nova Solicitação', new_solicitacao_path %>
+  </div>
+</div>

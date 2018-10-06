@@ -1,0 +1,18 @@
+
+<%= simple_form_for(@lista_produtos) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :solicitacao, as: :hidden %>
+    <%= f.association :produto, label_method: :nome, value_method: :id, as: :select, prompt: "Selecione o produto"  %>
+    <%= f.input :quantidade, input_html: { min: 1, max: 100000 }  %>
+    <%= f.input :data_devolucao, label: "Data de devolução:", start_year: Date.today.year, end_year: Date.today.year + 10, order: [:day, :month, :year], prompt: { day: "Dia", month: "Mês", year: "Ano", hour: "Hora" }, discard_minute: true %>
+    <%= f.input :status, as: :hidden %>
+    <%= f.input :observacao, as: :text %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

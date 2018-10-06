@@ -10,14 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180927192810) do
+ActiveRecord::Schema.define(version: 20180929012509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "listas_produtos", force: :cascade do |t|
+    t.integer  "solicitacao_id"
+    t.integer  "produto_id"
+    t.integer  "quantidade"
+    t.datetime "data_devolucao"
+    t.string   "status"
+    t.string   "observacao"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["produto_id"], name: "index_listas_produtos_on_produto_id", using: :btree
+    t.index ["solicitacao_id"], name: "index_listas_produtos_on_solicitacao_id", using: :btree
+  end
+
   create_table "produtos", force: :cascade do |t|
     t.string   "nome"
-    t.string   "tipo"
+    t.boolean  "tipo"
     t.float    "peso"
     t.integer  "linha"
     t.integer  "coluna"
@@ -37,15 +50,11 @@ ActiveRecord::Schema.define(version: 20180927192810) do
   create_table "solicitacoes", force: :cascade do |t|
     t.string   "titulo"
     t.integer  "user_id"
-    t.integer  "produto_id"
-    t.integer  "quantidade"
     t.datetime "data_solicitacao"
-    t.datetime "data_devolucao"
     t.string   "status"
     t.string   "observacao"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["produto_id"], name: "index_solicitacoes_on_produto_id", using: :btree
     t.index ["user_id"], name: "index_solicitacoes_on_user_id", using: :btree
   end
 
@@ -67,6 +76,7 @@ ActiveRecord::Schema.define(version: 20180927192810) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "solicitacoes", "produtos"
+  add_foreign_key "listas_produtos", "produtos"
+  add_foreign_key "listas_produtos", "solicitacoes"
   add_foreign_key "solicitacoes", "users"
 end

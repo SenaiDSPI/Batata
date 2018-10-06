@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1><%= @solicitacao.titulo %></h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <p>
+      <strong>User:</strong>
+      <%= @solicitacao.user.nome %>
+    </p>
+
+    <p>
+      <strong>Data solicitacao:</strong>
+      <% if !@solicitacao.data_solicitacao.nil? %>
+        <%= @solicitacao.data_solicitacao.strftime("%d/%m/%Y %H:%M") %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @solicitacao.status %>
+    </p>
+
+    <p>
+      <strong>Observacao:</strong>
+      <%= @solicitacao.observacao %>
+    </p>
+  </div>
+
+  <div class="shared">
+    <%= link_to 'Edit', edit_solicitacao_path(@solicitacao) %> |
+    <%= link_to 'Back', solicitacoes_path %>
+  </div>
+</div>
+
+

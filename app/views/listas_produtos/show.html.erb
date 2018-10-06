@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1><%= @produto.nome %></h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <p>
+      <strong>Quantidade:</strong>
+      <%= @lista_produtos.quantidade %>
+    </p>
+
+    <p>
+      <strong>Data devolucao:</strong>
+      <% if !@lista_produtos.data_devolucao.nil? %>
+        <%= @lista_produtos.data_devolucao.strftime("%d/%m/%Y - %H:00") %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @lista_produtos.status %>
+    </p>
+
+    <p>
+      <strong>Observacao:</strong>
+      <%= @lista_produtos.observacao %>
+    </p>
+  </div>
+
+  <div class="shared">
+    <%= link_to 'Edit', edit_lista_produtos_path(@lista_produtos, solicitacao_id: params[:solicitacao_id]) %> |
+    <%= link_to 'Back', listas_produtos_path(solicitacao_id: params[:solicitacao_id]) %>
+  </div>
+</div>
+
+

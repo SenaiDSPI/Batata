@@ -25,10 +25,14 @@
         <% @produtos.each do |produto| %>
           <tr>
             <td><%= produto.nome %></td>
-            <td><%= produto.tipo %></td>
+            <% if produto.tipo %>
+              <td>Reutilizável</td>
+            <% else %>
+              <td>Consumível</td>
+            <% end %>
             <td><%= produto.linha %></td>
             <td><%= produto.coluna %></td>
-            <% if produto.validade != nil %>
+            <% if !produto.validade.nil? and produto.validade != "" %>
               <td><%= produto.validade.strftime("%d/%m/%Y") %></td>
             <% else %>
               <td></td>

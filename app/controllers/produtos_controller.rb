@@ -15,10 +15,16 @@ class ProdutosController < ApplicationController
   # GET /produtos/new
   def new
     @produto = Produto.new
+    @data = Date.today
+    @produto.data_entrada = @data
+    @produto.ultima_entrada = @data
   end
 
   # GET /produtos/1/edit
   def edit
+    @data = Date.today
+    @produto.data_entrada = @data
+    @produto.ultima_entrada = @data
   end
 
   # POST /produtos
@@ -28,7 +34,7 @@ class ProdutosController < ApplicationController
 
     respond_to do |format|
       if @produto.save
-        format.html { redirect_to @produto, notice: 'Produto was successfully created.' }
+        format.html { redirect_to produtos_path, notice: 'Produto was successfully created.' }
         format.json { render :show, status: :created, location: @produto }
       else
         format.html { render :new }

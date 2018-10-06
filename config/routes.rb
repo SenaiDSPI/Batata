@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :listas_produtos
   resources :solicitacoes
   resources :produtos
   devise_for :users
