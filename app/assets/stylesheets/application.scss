@@ -1,7 +1,14 @@
+@import "sidebar.scss";
+@import "produtos.scss";
 @import "bootstrap";
+@import 'font_awesome5';
+
+* {
+	text-decoration: none !important;
+}
 
 body {
-	height: 100vh;
+	min-height: 100vh;
 }
 
 .card.bg-white.text-danger {
@@ -16,4 +23,19 @@ body {
 
 .text-danger {
 	color: #b70000 !important;
+}
+
+.bg-lightgray {
+	background-color: #dddddd;
+}
+
+.theme-dark {
+	background-color: #dddddd;
+}
+
+i {
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	vertical-align: middle;
 }

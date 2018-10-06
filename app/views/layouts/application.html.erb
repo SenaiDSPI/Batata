@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>Batata</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="pragma" content="no-cache">
+    
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,9 +14,16 @@
     <link rel="shortcut icon" href="/assets/batata.png" type="image/png">
   </head>
 
-  <body class="bg-dark">
-  	<div class="container">
-    	<%= yield %>
-  	</div>
+  <body class="theme-dark">
+    <div class="wrapper">
+      <% if(current_user) %>
+        <%= render "layouts/header" %>
+      <% else %>
+        <div class="container">
+      <% end %>
+
+      	<%= yield %>
+      </div>
+    </div>
   </body>
 </html>

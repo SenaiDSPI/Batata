@@ -2,6 +2,8 @@
   <div class="card-title">
     <h2>Login</h2>
   </div>
+  
+  <div class="card-body">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
         <%= f.input :login, label: "Login", required: true, autofocus: true %>

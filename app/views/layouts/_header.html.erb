@@ -1,0 +1,101 @@
+<nav id="sidebar">
+  <div class="sidebar-header text-center">
+    <button id="sidebarCollapse" class="btn btn-block text-white">
+      <h3 class="h5">&Sigma; Stock</h3>
+      <strong class="collapse h3" data-toggle="collapse" aria-expanded="false">&Sigma;</strong>
+    </button>
+  </div>
+  <ul class="list-unstyled components">
+    <li>
+      <%= link_to root_path do %>
+        <i class="fas fa-home"></i> <span>Home</span>
+      <% end %>
+    </li>
+
+    <li>
+      <a href="#movimentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <i class="fas fa-exchange-alt"></i> <span>Movimentação</span>
+      </a>
+
+      <ul class="collapse list-unstyled" id="movimentSubmenu">
+        <li>
+          <a href="#">Solicitação</a>
+        </li>
+
+        <li>
+          <a href="#">Retirada</a>
+        </li>
+
+        <li>
+          <a href="#">Devolução</a>
+        </li>
+
+        <li>
+          <a href="#">Reposição</a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#registerSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <i class="fas fa-plus"></i> <span>Cadastros</span>
+      </a>
+
+      <ul class="collapse list-unstyled" id="registerSubmenu">
+        <li>
+          <a href="#">Usuários</a>
+        </li>
+
+        <li>
+          <%= link_to "Produtos", produtos_path %>
+        </li>
+
+        <li>
+          <a href="#">RF - ID</a>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <i class="fas fa-clipboard-list"></i> <span>Relatórios</span>
+      </a>
+
+      <ul class="collapse list-unstyled" id="reportSubmenu">
+        <li>
+          <a href="#">Usuários</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<div id="content">
+  <nav class="navbar navbar-expand-lg sticky-top px-0 py-0">
+    <ul class="navbar-nav ml-auto list-unstyled components">
+      <li class="nav-item">
+        <%= link_to rails_admin_path, class: "nav-link" do %>
+          <i class="fas fa-key"></i>
+        <% end %>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-terminal"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fas fa-cog"></i>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <%= link_to destroy_user_session_path, class: "nav-link", method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
