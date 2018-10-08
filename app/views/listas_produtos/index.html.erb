@@ -28,7 +28,7 @@
             <% if !lista_produtos.data_devolucao.nil? %>
               <td><%= lista_produtos.data_devolucao.strftime("%d/%m/%Y - %H:00") %></td>          
             <% else %>
-              <td>branco</td>
+              <td></td>
             <% end %>
             <td><%= lista_produtos.status %></td>
             <td><%= lista_produtos.observacao %></td>

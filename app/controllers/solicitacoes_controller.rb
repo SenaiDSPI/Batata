@@ -11,6 +11,7 @@ class SolicitacoesController < ApplicationController
   # GET /solicitacoes/1.json
   def show
     @solicitacao.user = User.find(@solicitacao.user)
+    @listas_produtos = ListaProdutos.where(solicitacao_id: @solicitacao.id)
   end
 
   # GET /solicitacoes/new

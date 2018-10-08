@@ -9,7 +9,11 @@
   <div class="card-body">
     <p>
       <strong>Tipo:</strong>
-      <%= @produto.tipo %>
+      <% if @produto.tipo %>
+        <td>Reutilizável</td>
+      <% else %>
+        <td>Consumível</td>
+      <% end %>
     </p>
 
     <p>
