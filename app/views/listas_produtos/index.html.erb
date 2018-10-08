@@ -25,7 +25,11 @@
           <tr>
             <td><%= lista_produtos.produto.nome %></td>
             <td><%= lista_produtos.quantidade %></td>
-            <td><%= lista_produtos.data_devolucao %></td>
+            <% if !lista_produtos.data_devolucao.nil? %>
+              <td><%= lista_produtos.data_devolucao.strftime("%d/%m/%Y - %H:00") %></td>          
+            <% else %>
+              <td>branco</td>
+            <% end %>
             <td><%= lista_produtos.status %></td>
             <td><%= lista_produtos.observacao %></td>
             <td><%= link_to 'Show', lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) %></td>
