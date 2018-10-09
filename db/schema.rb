@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180929012509) do
+ActiveRecord::Schema.define(version: 20181008215414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20180929012509) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "reposicoes", force: :cascade do |t|
+    t.integer  "produto_id"
+    t.integer  "quantidade"
+    t.datetime "data_reposicao"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["produto_id"], name: "index_reposicoes_on_produto_id", using: :btree
+    t.index ["user_id"], name: "index_reposicoes_on_user_id", using: :btree
+  end
+
   create_table "solicitacoes", force: :cascade do |t|
     t.string   "titulo"
     t.integer  "user_id"
@@ -78,5 +89,9 @@ ActiveRecord::Schema.define(version: 20180929012509) do
 
   add_foreign_key "listas_produtos", "produtos"
   add_foreign_key "listas_produtos", "solicitacoes"
+  add_foreign_key "reposicaos", "produtos"
+  add_foreign_key "reposicaos", "users"
+  add_foreign_key "reposicoes", "produtos"
+  add_foreign_key "reposicoes", "users"
   add_foreign_key "solicitacoes", "users"
 end

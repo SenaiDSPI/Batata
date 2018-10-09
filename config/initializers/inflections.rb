@@ -15,4 +15,5 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'solicitacao', 'solicitacoes'
 	inflect.irregular 'lista_produtos', 'listas_produtos'
+	inflect.irregular 'reposicao', 'reposicoes'
 end

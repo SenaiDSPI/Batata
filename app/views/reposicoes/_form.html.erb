@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@reposicao) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :produto, label_method: :nome %>
+    <%= f.input :quantidade %>
+    <%= f.input :data_reposicao, as: :hidden %>
+    <%= f.association :user, as: :hidden %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

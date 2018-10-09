@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :reposicoes
+  resources :reposicaos
   resources :listas_produtos
   resources :solicitacoes
   

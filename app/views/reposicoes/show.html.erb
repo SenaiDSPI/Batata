@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+    	<h1>Repor <%= @reposicao.produto.nome %></h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+		<p>
+		  <strong>Produto:</strong>
+		  <%= @reposicao.produto.nome %>
+		</p>
+
+		<p>
+		  <strong>Quantidade:</strong>
+		  <%= @reposicao.quantidade %>
+		</p>
+
+		<p>
+		  <strong>Data reposicao:</strong>
+		  <% if !@reposicao.data_reposicao.nil? %>
+        <td><%= @reposicao.data_reposicao.strftime("%d/%m/%Y - %H:%M") %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+		</p>
+
+		<p>
+		  <strong>User:</strong>
+		  <%= @reposicao.user.nome %>
+		</p>
+  </div>
+
+  <div class="shared">
+		<%= link_to 'Edit', edit_reposicao_path(@reposicao) %> |
+		<%= link_to 'Back', reposicoes_path %>
+  </div>
+</div>
+
+
