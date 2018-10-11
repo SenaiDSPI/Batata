@@ -21,16 +21,18 @@ class ReposicoesController < ApplicationController
 
   # GET /reposicoes/1/edit
   def edit
+    @produto = Produto.find(@reposicao.produto)
+    @produto.update(quantidade_atual: (@produto.quantidade_atual -= @reposicao.quantidade))
   end
 
   # POST /reposicoes
   # POST /reposicoes.json
   def create
     @reposicao = Reposicao.new(reposicao_params)
-    # @reposicao.produto.quantidade_atual = (@reposicao.produto.quantidade_atual + @reposicao.quantidade)
+
     @produto = Produto.find(@reposicao.produto)
-    @produto.quantidade_atual += @reposicao.produto.quantidade_atual
-    @produto.save
+    @produto.update(quantidade_atual: (@produto.quantidade_atual += @reposicao.quantidade))
+
     respond_to do |format|
       if @reposicao.save
         format.html { redirect_to @reposicao, notice: 'Reposicao was successfully created.' }
@@ -45,6 +47,9 @@ class ReposicoesController < ApplicationController
   # PATCH/PUT /reposicoes/1
   # PATCH/PUT /reposicoes/1.json
   def update
+    @produto = Produto.find(@reposicao.produto)
+    @produto.update(quantidade_atual: (@produto.quantidade_atual += @reposicao.quantidade))
+
     respond_to do |format|
       if @reposicao.update(reposicao_params)
         format.html { redirect_to @reposicao, notice: 'Reposicao was successfully updated.' }

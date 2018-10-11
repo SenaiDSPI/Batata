@@ -31,6 +31,7 @@ class ProdutosController < ApplicationController
   # POST /produtos.json
   def create
     @produto = Produto.new(produto_params)
+    @produto.quantidade_atual = 0;
 
     respond_to do |format|
       if @produto.save
