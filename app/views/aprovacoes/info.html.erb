@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1>Informações da solicitação</h1>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <p>
+      <strong>Título:</strong>
+      <%= @solicitacao.titulo %>
+    </p>
+    <p>
+      <strong>Solicitante:</strong>
+      <%= @solicitacao.user.nome %>
+    </p>
+
+    <p>
+      <strong>Data solicitacao:</strong>
+      <% if !@solicitacao.data_solicitacao.nil? %>
+        <%= @solicitacao.data_solicitacao.strftime("%d/%m/%Y %H:%M") %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @solicitacao.status %>
+    </p>
+
+    <p>
+      <strong>Observacao:</strong>
+      <%= @solicitacao.observacao %>
+    </p>
+
+    <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+      <div class="card-head">
+        <div class="card-title">
+          <h1>Lista de produtos</h1>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-striped table-bordered" style="width:100%">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Data de Devolução</th>
+              <th colspan="2">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @listas_produtos.each do |l| %>
+              <tr>
+                <td><%= l.produto.nome %></td>
+                <td><%= l.quantidade %></td>
+                <% if !l.data_devolucao.nil? %>
+                  <td><%= l.data_devolucao.strftime("%d/%m/%Y - %H:00") %></td>          
+                <% else %>
+                  <td></td>
+                <% end %>
+                <td><%= button_to "aprovar", aprovacao_update_path(l.solicitacao, l, "aprovado"), method: :get %></td>
+                <td><%= button_to "reprovar", aprovacao_update_path(l.solicitacao, l, "reprovado") %></td></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

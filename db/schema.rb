@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20181008215414) do
 
   create_table "produtos", force: :cascade do |t|
     t.string   "nome"
-    t.boolean  "tipo"
+    t.boolean  "tipo",              null: false
     t.float    "peso"
     t.integer  "linha"
     t.integer  "coluna"
@@ -89,8 +89,6 @@ ActiveRecord::Schema.define(version: 20181008215414) do
 
   add_foreign_key "listas_produtos", "produtos"
   add_foreign_key "listas_produtos", "solicitacoes"
-  add_foreign_key "reposicaos", "produtos"
-  add_foreign_key "reposicaos", "users"
   add_foreign_key "reposicoes", "produtos"
   add_foreign_key "reposicoes", "users"
   add_foreign_key "solicitacoes", "users"
