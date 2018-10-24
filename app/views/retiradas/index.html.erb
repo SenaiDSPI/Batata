@@ -2,7 +2,7 @@
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
-      <h1>Lista para aprovações</h1>
+      <h1>Lista para Retirada</h1>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
               <td></td>
             <% end %>
             <td><%= s.status %></td>
-            <td><%= link_to "Informações", aprovacao_info_path(s) %></td>
+            <td><%= link_to "Informações", retirada_info_path(s) %></td>
           </tr>
         <% end %>
       </tbody>

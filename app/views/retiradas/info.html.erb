@@ -47,7 +47,7 @@
               <th>Produto</th>
               <th>Quantidade</th>
               <th>Data de Devolução</th>
-              <th colspan="2">Status</th>
+              <th colspan="1">Status</th>
             </tr>
           </thead>
 
@@ -61,9 +61,8 @@
                 <% else %>
                   <td></td>
                 <% end %>
-                <% if l.status == "aberto" %>
-                  <td><%= button_to "aprovar", aprovacao_update_path(l.solicitacao, l, "aprovado"), method: :get %></td>
-                  <td><%= button_to "reprovar", aprovacao_update_path(l.solicitacao, l, "reprovado"), method: :get %></td>
+                <% if l.status == "aprovado" %>
+                  <td><%= button_to "Retirar", aprovacao_update_path(l.solicitacao, l, "retirado"), method: :get %></td>
                 <% else %>
                   <td><%= l.status %></td>
                 <% end %>
@@ -75,5 +74,3 @@
     </div>
   </div>
 </div>
-
-

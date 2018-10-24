@@ -10,9 +10,17 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#home'
   get 'console', to: 'console#index', as: 'console'
+  
+  # Aprovações
   get 'aprovacoes', to: 'aprovacoes#index', as: 'aprovacao_index'
   get 'aprovacoes/:id', to: 'aprovacoes#info', as: 'aprovacao_info'
   get 'aprovacoes/:id/update/:id_produto/:status', to: 'aprovacoes#update', as: 'aprovacao_update'
+
+  # Retirada
+  get 'retiradas', to: 'retiradas#index', as: 'retirada_index'
+  get 'retiradas/:id', to: 'retiradas#info', as: 'retirada_info'
+  get 'retiradas/:id/update/:id_produto/:status', to: 'retiradas#update', as: 'retirada_update'
+  
   # get 'retirada', to: 'movimentacoes#retirada'
   # get 'devolucao', to: 'movimentacoes#devolucao'
 end

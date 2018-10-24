@@ -17,9 +17,12 @@ class AprovacoesController < ApplicationController
 		@listas_produtos = ListaProdutos.where(solicitacao_id: @produto.solicitacao, status: "aberto")
 		
 		# verifica se a lista tem produtos em aberto, se não, modifica o status da solicitação para fechado 
-		if @listas_produtos.nil?
+		if @listas_produtos[0].nil?
 			@solicitacao = Solicitacao.find(@produto.solicitacao)
 			@solicitacao.update(status: "fechado")
+		end
+		respond_to do |format|
+			format.html { redirect_to aprovacao_index_path }
 		end
 	end
 end
