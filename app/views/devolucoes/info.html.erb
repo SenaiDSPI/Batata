@@ -61,8 +61,8 @@
                 <% else %>
                   <td></td>
                 <% end %>
-                <% if l.status == "aprovado" %>
-                  <td><%= button_to "Retirar", retirada_update_path(l.solicitacao, l, "retirado"), method: :get %></td>
+                <% if l.status == "retirado" %>
+                  <td><%= button_to "Devolver", devolucao_update_path(l.solicitacao, l, "devolvido"), method: :get %></td>
                 <% else %>
                   <td><%= l.status %></td>
                 <% end %>

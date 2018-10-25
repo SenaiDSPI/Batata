@@ -1,4 +1,4 @@
-class RetiradasController < ApplicationController
+class DevolucoesController < ApplicationController
 	def index
 		# Definição de variaveis
 		@solicitacoes = Solicitacao.where(status: "aberto").or(Solicitacao.where(status: "fechado"))
@@ -8,8 +8,8 @@ class RetiradasController < ApplicationController
 		@solicitacoes.each do |s|
 			# Verifica as solicitações com status em aberto
 			if s.status == "aberto"
-				# Busca se há um produto na lista (de cada solicitação) que esteja aprovado 
-				@lista_produtos = ListaProdutos.where(solicitacao_id: s, status: "aprovado").limit(1)
+				# Busca se há um produto na lista (de cada solicitação) que esteja retirado 
+				@lista_produtos = ListaProdutos.where(solicitacao_id: s, status: "retirado").limit(1)
 
 				# Verifica se há um produto na lista (de cada solicitação) que esteja aprovado
 				if !@lista_produtos[0].nil?
@@ -18,8 +18,8 @@ class RetiradasController < ApplicationController
 
 			# Verifica as solicitações com status em fechado 
 			elsif s.status == "fechado"
-				# Busca se há um produto na lista (de cada solicitação) que esteja aprovado 
-				@lista_produtos = ListaProdutos.where(solicitacao_id: s, status: "aprovado").limit(1)
+				# Busca se há um produto na lista (de cada solicitação) que esteja retirado 
+				@lista_produtos = ListaProdutos.where(solicitacao_id: s, status: "retirado").limit(1)
 
 				# Verifica se há um produto na lista (de cada solicitação) que esteja aprovado
 				if !@lista_produtos[0].nil?
@@ -45,7 +45,7 @@ class RetiradasController < ApplicationController
 		@produto.update(status: params[:status])
 
 		# Busca a lista completa de produtos da solicitação 
-		@listas_produtos = ListaProdutos.where(solicitacao_id: @produto.solicitacao, status: "aprovado")
+		@listas_produtos = ListaProdutos.where(solicitacao_id: @produto.solicitacao, status: "retirado")
 		
 		# verifica se a lista tem produtos em aberto, se não, modifica o status da solicitação para fechado 
 		if @listas_produtos[0].nil?
@@ -55,7 +55,7 @@ class RetiradasController < ApplicationController
 
 		# Redireciona ao index
 		respond_to do |format|
-			format.html { redirect_to retirada_index_path }
+			format.html { redirect_to devolucao_index_path }
 		end
 	end
 end

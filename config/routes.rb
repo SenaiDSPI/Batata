@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   get 'retiradas', to: 'retiradas#index', as: 'retirada_index'
   get 'retiradas/:id', to: 'retiradas#info', as: 'retirada_info'
   get 'retiradas/:id/update/:id_produto/:status', to: 'retiradas#update', as: 'retirada_update'
+
+  # Devolução
+  get 'devolucoes', to: 'devolucoes#index', as: 'devolucao_index'
+  get 'devolucoes/:id', to: 'devolucoes#info', as: 'devolucao_info'
+  get 'devolucoes/:id/update/:id_produto/:status', to: 'devolucoes#update', as: 'devolucao_update'
   
   # get 'retirada', to: 'movimentacoes#retirada'
   # get 'devolucao', to: 'movimentacoes#devolucao'

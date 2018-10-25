@@ -21,6 +21,8 @@ class AprovacoesController < ApplicationController
 			@solicitacao = Solicitacao.find(@produto.solicitacao)
 			@solicitacao.update(status: "fechado")
 		end
+
+		# Redirecionado ao index
 		respond_to do |format|
 			format.html { redirect_to aprovacao_index_path }
 		end
