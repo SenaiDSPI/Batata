@@ -15,8 +15,6 @@ class ReposicoesController < ApplicationController
   # GET /reposicoes/new
   def new
     @reposicao = Reposicao.new
-    @reposicao.user = current_user
-    @reposicao.data_reposicao = DateTime.now
   end
 
   # GET /reposicoes/1/edit
@@ -29,9 +27,14 @@ class ReposicoesController < ApplicationController
   # POST /reposicoes.json
   def create
     @reposicao = Reposicao.new(reposicao_params)
+    @reposicao.user = current_user
+    @reposicao.data_reposicao = DateTime.now
 
     @produto = Produto.find(@reposicao.produto)
-    @produto.update(quantidade_atual: (@produto.quantidade_atual += @reposicao.quantidade))
+    @produto.update(
+      quantidade_atual: (@produto.quantidade_atual += @reposicao.quantidade),
+      ultima_entrada: Date.today
+    )
 
     respond_to do |format|
       if @reposicao.save

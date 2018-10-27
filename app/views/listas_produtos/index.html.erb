@@ -15,7 +15,6 @@
           <th>Quantidade</th>
           <th>Data devolucao</th>
           <th>Status</th>
-          <th>Observacao</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -31,9 +30,16 @@
               <td></td>
             <% end %>
             <td><%= lista_produtos.status %></td>
-            <td><%= lista_produtos.observacao %></td>
-            <td><%= link_to 'Show', lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) %></td>
-            <td><%= link_to 'Edit', edit_lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) %></td>
+            <td class="text-center">
+              <%= link_to lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) do %>
+                <i class="fas fa-info text-primary"></i>
+              <% end %>
+            </td>
+            <td class="text-center">
+              <%= link_to edit_lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) do %>
+                <i class="fas fa-pen text-info"></i>
+              <% end %>
+            </td>
             <td><%= link_to 'Destroy', lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>

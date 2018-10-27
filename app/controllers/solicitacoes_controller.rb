@@ -17,10 +17,6 @@ class SolicitacoesController < ApplicationController
   # GET /solicitacoes/new
   def new
     @solicitacao = Solicitacao.new
-
-    @solicitacao.user = current_user
-    @solicitacao.status = "aberto"
-    @solicitacao.data_solicitacao = DateTime.now
   end
 
   # GET /solicitacoes/1/edit
@@ -31,6 +27,8 @@ class SolicitacoesController < ApplicationController
   # POST /solicitacoes.json
   def create
     @solicitacao = Solicitacao.new(solicitacao_params)
+    @solicitacao.user = current_user
+    @solicitacao.data_solicitacao = DateTime.now
 
     respond_to do |format|
       if @solicitacao.save

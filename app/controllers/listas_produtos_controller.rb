@@ -10,27 +10,26 @@ class ListasProdutosController < ApplicationController
   # GET /listas_produtos/1
   # GET /listas_produtos/1.json
   def show
-    @produto = Produto.find(@lista_produtos.produto)
   end
 
   # GET /listas_produtos/new
   def new
     @lista_produtos = ListaProdutos.new
     @lista_produtos.solicitacao_id = params[:solicitacao_id]
-    @lista_produtos.status = "aberto"
+    
     @produtos = Produto.all
   end
 
   # GET /listas_produtos/1/edit
   def edit
     @lista_produtos.solicitacao_id = params[:solicitacao_id]
-    @lista_produtos.status = "aberto"
   end
 
   # POST /listas_produtos
   # POST /listas_produtos.json
   def create
     @lista_produtos = ListaProdutos.new(lista_produtos_params)
+    @lista_produtos.status = "aberto"
 
     respond_to do |format|
       if @lista_produtos.save

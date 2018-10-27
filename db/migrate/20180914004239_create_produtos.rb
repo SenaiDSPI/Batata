@@ -11,10 +11,10 @@ class CreateProdutos < ActiveRecord::Migration[5.0]
       t.integer :quantidade_maxima
       t.integer :quantidade_atual,  null: 0
       t.string :codigo_barra
-      t.date :data_entrada
-      t.date :ultima_entrada
-      t.date :ultima_retirada
-      t.date :ultima_devolucao
+      t.datetime :data_entrada
+      t.datetime :ultima_entrada
+      t.datetime :ultima_retirada
+      t.datetime :ultima_devolucao
 
       t.timestamps
     end

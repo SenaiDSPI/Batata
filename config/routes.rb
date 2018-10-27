@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#home'
   get 'console', to: 'console#index', as: 'console'
+
+  
+  get 'teste', to: 'teste#index', as: 'teste'
+  get 'teste/:quantidade', to: 'teste#test', as: 'test'
   
   # Aprovações
   get 'aprovacoes', to: 'aprovacoes#index', as: 'aprovacao_index'

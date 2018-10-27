@@ -15,22 +15,17 @@ class ProdutosController < ApplicationController
   # GET /produtos/new
   def new
     @produto = Produto.new
-    @data = Date.today
-    @produto.data_entrada = @data
-    @produto.ultima_entrada = @data
   end
 
   # GET /produtos/1/edit
   def edit
-    @data = Date.today
-    @produto.data_entrada = @data
-    @produto.ultima_entrada = @data
   end
 
   # POST /produtos
   # POST /produtos.json
   def create
     @produto = Produto.new(produto_params)
+    @produto.data_entrada = Date.today
     @produto.quantidade_atual = 0;
 
     respond_to do |format|

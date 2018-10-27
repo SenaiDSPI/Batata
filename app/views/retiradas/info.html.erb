@@ -24,11 +24,6 @@
     </p>
 
     <p>
-      <strong>Status:</strong>
-      <%= @solicitacao.status %>
-    </p>
-
-    <p>
       <strong>Observacao:</strong>
       <%= @solicitacao.observacao %>
     </p>
@@ -47,7 +42,7 @@
               <th>Produto</th>
               <th>Quantidade</th>
               <th>Data de Devolução</th>
-              <th colspan="1">Status</th>
+              <th colspan="1"></th>
             </tr>
           </thead>
 
@@ -62,7 +57,12 @@
                   <td></td>
                 <% end %>
                 <% if l.status == "aprovado" %>
-                  <td><%= button_to "Retirar", retirada_update_path(l.solicitacao, l, "retirado"), method: :get %></td>
+                  <td class="text-center px-1">
+                    <%= link_to retirada_update_path(l.solicitacao, l, "retirado"), method: :get do %>
+                      <i class="fas fa-box text-primary"></i>
+                      <i class="fas fa-arrow-right text-primary"></i>
+                    <% end %>
+                  </td>
                 <% else %>
                   <td><%= l.status %></td>
                 <% end %>

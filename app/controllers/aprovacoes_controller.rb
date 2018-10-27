@@ -1,6 +1,22 @@
 class AprovacoesController < ApplicationController
 	def index
-		@solicitacoes = Solicitacao.where(status: "aberto").order(id: :asc)
+		# Definição de variaveis
+		@solicitacoes = Solicitacao.all
+		@lista_solicitacoes = []
+
+		# For each
+		@solicitacoes.each do |s|
+			# Busca se há um produto na lista (de cada solicitação) que esteja com status aberto 
+			@listas_produtos = ListaProdutos.where(solicitacao_id: s, status: "aberto")
+
+			# Verifica se há um produto na lista (de cada solicitação) que esteja com status aberto
+			if !@listas_produtos[0].nil?
+				@lista_solicitacoes.push(s)
+			end
+		end
+
+		# Após a filtragem devolve as solicitações necessarias para o index
+		@solicitacoes = @lista_solicitacoes
 	end
 
 	def info
@@ -13,18 +29,9 @@ class AprovacoesController < ApplicationController
 		@produto = ListaProdutos.find(params[:id_produto])
 		@produto.update(status: params[:status])
 
-		# Busca a lista completa de produtos da solicitação 
-		@listas_produtos = ListaProdutos.where(solicitacao_id: @produto.solicitacao, status: "aberto")
-		
-		# verifica se a lista tem produtos em aberto, se não, modifica o status da solicitação para fechado 
-		if @listas_produtos[0].nil?
-			@solicitacao = Solicitacao.find(@produto.solicitacao)
-			@solicitacao.update(status: "fechado")
-		end
-
 		# Redirecionado ao index
 		respond_to do |format|
-			format.html { redirect_to aprovacao_index_path }
+			format.html { redirect_to aprovacao_index_path, notice: @produto.produto.nome+" "+params[:status]+" com sucesso" }
 		end
 	end
 end

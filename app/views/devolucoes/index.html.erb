@@ -13,7 +13,6 @@
           <th>Titulo</th>
           <th>Usuário</th>
           <th>Data da solicitação</th>
-          <th>Status</th>
           <th colspan="1"></th>
         </tr>
       </thead>
@@ -28,8 +27,11 @@
             <% else %>
               <td></td>
             <% end %>
-            <td><%= s.status %></td>
-            <td><%= link_to "Informações", devolucao_info_path(s) %></td>
+            <td class="text-center">
+              <%= link_to devolucao_info_path(s) do %>
+                <i class="fas fa-info text-primary"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
