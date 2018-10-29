@@ -4,12 +4,12 @@ class TesteController < ActionController::Base
 	end
 
 	def test
-		@id = Reposicao.all.order(id: :desc)[0]
+		@id = Reposicao.all.order(id: :desc).limit(1)[0]
 
 		@reposicao = Reposicao.new
 		@reposicao.id = @id.id + 1
-		@reposicao.produto = Produto.find(1)
-		@reposicao.user = User.find(1)
+		@reposicao.produto = Produto.all.limit(1)[0]
+		@reposicao.user = User.all.limit(1)[0]
 		@reposicao.quantidade = params[:quantidade]
 		
 
