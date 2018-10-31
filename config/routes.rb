@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
+  # Rails Admin
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
+  # Devise Auth
+  devise_for :users
+  resources :users
+  
+  # Scaffolds
+  resources :produtos
   resources :reposicoes
-  resources :reposicaos
   resources :listas_produtos
   resources :solicitacoes
-  
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :produtos
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'pages#home'
-  get 'console', to: 'console#index', as: 'console'
 
+  # Root path
+  root to: 'pages#home'
+
+  # Console path
+  get 'console', to: 'console#index', as: 'console'
   
   get 'teste', to: 'teste#index', as: 'teste'
   get 'teste/:quantidade', to: 'teste#test', as: 'test'
@@ -29,7 +35,4 @@ Rails.application.routes.draw do
   get 'devolucoes', to: 'devolucoes#index', as: 'devolucao_index'
   get 'devolucoes/:id', to: 'devolucoes#info', as: 'devolucao_info'
   get 'devolucoes/:id/update/:id_produto/:status', to: 'devolucoes#update', as: 'devolucao_update'
-  
-  # get 'retirada', to: 'movimentacoes#retirada'
-  # get 'devolucao', to: 'movimentacoes#devolucao'
 end

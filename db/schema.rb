@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20181008215414) do
 
   create_table "produtos", force: :cascade do |t|
     t.string   "nome"
-    t.boolean  "tipo",              null: false
+    t.string   "tipo"
     t.float    "peso"
     t.integer  "linha"
     t.integer  "coluna"

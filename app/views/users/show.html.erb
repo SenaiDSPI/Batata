@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1>Usuário: <%= @user.nome %></h1>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <p>
+      <strong>Login:</strong>
+      <%= @user.login %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <strong>Cargo:</strong>
+      <%= @user.cargo %>
+    </p>
+
+    <p>
+      <strong>Telefone:</strong>
+      <%= @user.telefone %>
+    </p>
+
+    <p>
+      <strong>Nível de acesso:</strong>
+      <%= @user.nivel_acesso %>
+    </p>
+
+    <p>
+      <strong>RF-ID:</strong>
+      <%= @user.tag %>
+    </p>
+
+    <div class="shared">
+      <%= link_to 'Editar', edit_user_path(@user) %> |
+      <%= link_to 'Voltar', users_path %>
+    </div>
+  </div>
+</div>

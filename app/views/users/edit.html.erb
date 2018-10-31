@@ -1,0 +1,15 @@
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+			<h1>Editar cadastro de usuário</h1>
+		</div>
+	</div>
+
+	<div class="card-body">
+		<%= render 'form', user: @user %>
+	</div>
+	
+	<div class="shared">
+		<%= link_to 'Voltar', users_path %>
+	</div>
+</div>
