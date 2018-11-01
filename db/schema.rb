@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 20181008215414) do
     t.integer  "quantidade_maxima"
     t.integer  "quantidade_atual"
     t.string   "codigo_barra"
-    t.date     "data_entrada"
-    t.date     "ultima_entrada"
-    t.date     "ultima_retirada"
-    t.date     "ultima_devolucao"
+    t.datetime "data_entrada"
+    t.datetime "ultima_entrada"
+    t.datetime "ultima_retirada"
+    t.datetime "ultima_devolucao"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
@@ -70,20 +70,28 @@ ActiveRecord::Schema.define(version: 20181008215414) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "nome"
+    t.string   "login"
+    t.string   "email",                  default: "",    null: false
+    t.string   "cargo"
+    t.string   "nivel_acesso"
+    t.string   "telefone"
+    t.string   "tag"
+    t.boolean  "admin",                  default: false
+    t.boolean  "ativo",                  default: true
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string   "nome"
-    t.string   "cargo"
-    t.string   "nivel_acesso"
-    t.string   "login"
-    t.string   "telefone"
-    t.string   "tag"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["login"], name: "index_users_on_login", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

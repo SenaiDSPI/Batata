@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
 				 :recoverable, :rememberable, :validatable,
-				 authentication_keys: [:login]
+				 :trackable, authentication_keys: [:login]
   
   validates :login, presence: :true, uniqueness: { case_sensitive: false }
 end
