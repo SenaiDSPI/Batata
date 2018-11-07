@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notificacoes
   resources :reposicoes
   resources :reposicaos
   resources :listas_produtos
@@ -11,10 +12,18 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'console', to: 'console#index', as: 'console'
 
-  
+  # Teste
   get 'teste', to: 'teste#index', as: 'teste'
   get 'teste/:quantidade', to: 'teste#test', as: 'test'
   
+  # Comunicacao
+  get 'comunicacao', to: 'comunicacao#index', as: 'comunicacao'
+  get 'comunicacao/rfid/:cod', to: 'comunicacao#rfid', as: 'comunicacao_rfid'
+  get 'comunicacao/variacao/:cod/:linha/:coluna/:valor', to: 'comunicacao#variacao', as: 'comunicacao_variacao'
+  get 'comunicacao/erro/:cod/:tipo/:linha/:coluna', to: 'comunicacao#erro', as: 'comunicacao_erro'
+  get 'comunicacao/porta/:rfid/:peso', to: 'comunicacao#porta', as: 'comunicacao_porta'
+  
+
   # Aprovações
   get 'aprovacoes', to: 'aprovacoes#index', as: 'aprovacao_index'
   get 'aprovacoes/:id', to: 'aprovacoes#info', as: 'aprovacao_info'

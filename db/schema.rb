@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008215414) do
+ActiveRecord::Schema.define(version: 20181107150610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20181008215414) do
     t.datetime "updated_at",     null: false
     t.index ["produto_id"], name: "index_listas_produtos_on_produto_id", using: :btree
     t.index ["solicitacao_id"], name: "index_listas_produtos_on_solicitacao_id", using: :btree
+  end
+
+  create_table "notificacoes", force: :cascade do |t|
+    t.string   "titulo"
+    t.text     "mensagem"
+    t.integer  "cod"
+    t.string   "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "produtos", force: :cascade do |t|
@@ -56,6 +65,12 @@ ActiveRecord::Schema.define(version: 20181008215414) do
     t.datetime "updated_at",     null: false
     t.index ["produto_id"], name: "index_reposicoes_on_produto_id", using: :btree
     t.index ["user_id"], name: "index_reposicoes_on_user_id", using: :btree
+  end
+
+  create_table "rfids", force: :cascade do |t|
+    t.string   "cod"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "solicitacoes", force: :cascade do |t|

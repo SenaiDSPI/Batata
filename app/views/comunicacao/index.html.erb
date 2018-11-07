@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RF-ID Arduino</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<p class="notice"><%= notice %></p>
+	<div class="container">
+		<h1>Testes</h1>
+		<h3>RF-ID's</h3>
+		<table class="table table-striped table-bordered" style="width:100%">
+		  <thead>
+		    <tr>
+		      <th>Rfid</th>
+		      <th>Atualizado</th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @rfids.each do |rfid| %>
+		      <tr>
+		        <td><%= rfid.cod %></td>
+		        <td><%= rfid.updated_at %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
+		<h3>Notificações</h3>
+		<table class="table table-striped table-bordered" style="width:100%">
+		  <thead>
+		    <tr>
+		      <th>Titulo</th>
+		      <th>Mensagem</th>
+		      <th>Cod</th>
+		      <th>Tipo</th>
+		      <th>Criado</th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @ts.each do |t| %>
+		      <tr>
+		        <td><%= t.titulo %></td>
+		        <td><%= t.mensagem %></td>
+		        <td><%= t.cod %></td>
+		        <td><%= t.tipo %></td>
+		        <td><%= t.created_at %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+</body>
+</html>
+<!-- <%# console %> -->

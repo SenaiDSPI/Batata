@@ -1,21 +1,24 @@
 class TesteController < ActionController::Base
 	def index
-		@reposicoes = Reposicao.all
+		@produtos = Produto.all
 	end
 
 	def test
-		@id = Reposicao.all.order(id: :desc).limit(1)[0]
+		@id = Produto.all.order(id: :desc).limit(1)[0]
+		if(@id.nil?)
+			@id = Produto.new
+			@id.id = 0
+		end
 
-		@reposicao = Reposicao.new
-		@reposicao.id = @id.id + 1
-		@reposicao.produto = Produto.all.limit(1)[0]
-		@reposicao.user = User.all.limit(1)[0]
-		@reposicao.quantidade = params[:quantidade]
+		@produto = Produto.new
+		@produto.id = @id.id + 1
+		@produto.nome = params[:quantidade]
+		@produto.tipo = false
 		
 
 
 		respond_to do |format|
-			format.html { redirect_to teste_path, notice: "final: "+ @reposicao.save.to_s }
+			format.html { redirect_to teste_path, notice: "final: "+ @produto.save.to_s }
 		end
 	end
 end
