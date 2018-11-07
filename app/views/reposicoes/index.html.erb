@@ -2,7 +2,7 @@
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
-      <h1>Reposicoes</h1>
+      <h1>Reposições</h1>
     </div>
   </div>
 
@@ -12,9 +12,13 @@
         <tr>
           <th>Produto</th>
           <th>Quantidade</th>
-          <th>Data de reposição</th>
-          <th>Usuario</th>
-          <th colspan="2"></th>
+          <th>Data da reposição</th>
+          <th>Usuário</th>
+          <th colspan="2" class="text-center h5">
+            <%= link_to new_reposicao_path, class: "ml-auto" do %>
+              <i class="fas fa-plus text-danger"></i>
+            <% end %>
+          </th>
         </tr>
       </thead>
 
@@ -29,16 +33,12 @@
               <td></td>
             <% end %>
             <td><%= reposicao.user.nome %></td>
-            <td><%= link_to 'Show', reposicao %></td>
-            <!-- <td><%# link_to 'Edit', edit_reposicao_path(reposicao) %></td> -->
-            <td><%= link_to 'Destroy', reposicao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="text-center px-1"><%= link_to reposicao do %><i class="fas fa-info text-danger"></i><% end %></td>
+            <!-- <td class="text-center px-0"><#%= link_to edit_reposicao_path(reposicao) do %><i class="fas fa-pen text-danger"></i><%# end %></td> -->
+            <td class="text-center px-1"><%= link_to reposicao, method: :delete, data: { confirm: 'Você tem certeza?' } do %><i class="fas fa-times text-danger"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
-
-  <div class="shared">
-    <%= link_to 'New Reposicao', new_reposicao_path %>
   </div>
 </div>

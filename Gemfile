@@ -47,6 +47,10 @@ gem 'web-console', '>= 3.3.0'
 # Rails Admin for Superadmin
 gem 'rails_admin', '~> 1.3'
 
+
+# Toastr for alerts
+gem 'toastr-rails'
+
 group :development do
   
 end

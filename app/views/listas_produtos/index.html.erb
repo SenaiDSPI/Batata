@@ -3,7 +3,7 @@
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
-      <h1>Listas Produtos</h1>
+      <h1>Lista de Produtos</h1>
     </div>
   </div>
 
@@ -15,7 +15,11 @@
           <th>Quantidade</th>
           <th>Data devolucao</th>
           <th>Status</th>
-          <th colspan="3"></th>
+          <th colspan="3" class="text-center h5">
+            <%= link_to new_lista_produtos_path, class: "ml-auto" do %>
+              <i class="fas fa-plus text-danger"></i>
+            <% end %>
+          </th>
         </tr>
       </thead>
 
@@ -30,26 +34,13 @@
               <td></td>
             <% end %>
             <td><%= lista_produtos.status %></td>
-            <td class="text-center">
-              <%= link_to lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) do %>
-                <i class="fas fa-info text-primary"></i>
-              <% end %>
-            </td>
-            <td class="text-center">
-              <%= link_to edit_lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) do %>
-                <i class="fas fa-pen text-info"></i>
-              <% end %>
-            </td>
-            <td><%= link_to 'Destroy', lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="text-center px-1"><%= link_to lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) do %><i class="fas fa-info text-danger"></i><% end %></td>
+            <td class="text-center px-0"><%= link_to edit_lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]) do %><i class="fas fa-pen text-danger"></i><% end %></td>
+            <td class="text-center px-1"><%= link_to lista_produtos_path(lista_produtos, solicitacao_id: params[:solicitacao_id]), method: :delete, data: { confirm: 'Você tem certeza?' } do %><i class="fas fa-times text-danger"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </div>
-
-  <div class="shared">
-    <%= link_to 'Adicionar Produto a lista', new_lista_produtos_path(solicitacao_id: params[:solicitacao_id]) %> |
-    <%= link_to 'voltar', solicitacoes_path %>
   </div>
 </div>
 

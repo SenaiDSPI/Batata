@@ -3,7 +3,7 @@
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
-      <h1>Produto</h1>
+      <h1>Produtos</h1>
     </div>
   </div>
 
@@ -17,7 +17,11 @@
           <th>Coluna</th>
           <th>Validade</th>
           <th>Quantidade atual</th>
-          <th colspan="3"></th>
+          <th colspan="3" class="text-center h5">
+            <%= link_to new_produto_path, class: "ml-auto" do %>
+              <i class="fas fa-plus text-danger"></i>
+            <% end %>
+          </th>
         </tr>
       </thead>
 
@@ -38,17 +42,12 @@
               <td></td>
             <% end %>
             <td><%= produto.quantidade_atual %></td>
-            <td><%= link_to 'Visualizar', produto, class: "btn btn-info" %></td>
-            <td><%= link_to 'Editar', edit_produto_path(produto), class: "btn btn-success" %></td>
-            <td><%= link_to 'Apagar', produto, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger" %></td>
+            <td class="text-center px-1"><%= link_to produto do %><i class="fas fa-info text-danger"></i><% end %></td>
+            <td class="text-center px-0"><%= link_to edit_produto_path(produto) do %><i class="fas fa-pen text-danger"></i><% end %></td>
+            <td class="text-center px-1"><%= link_to produto, method: :delete, data: { confirm: 'Você tem certeza?' } do %><i class="fas fa-times text-danger"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <br>
-
-    <div class="shared">
-      <%= link_to 'Adicionar produto', new_produto_path %>
-    </div>
   </div>
 </div>

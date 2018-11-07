@@ -1,7 +1,8 @@
 @import "sidebar.scss";
 @import "produtos.scss";
 @import "bootstrap";
-@import 'font_awesome5';
+@import "font_awesome5";
+@import "toastr";
 
 * {
 	text-decoration: none !important;
@@ -38,4 +39,8 @@ i {
 	width: 20px;
 	text-align: center;
 	vertical-align: middle;
+}
+
+.b-0 {
+	border: none;
 }
