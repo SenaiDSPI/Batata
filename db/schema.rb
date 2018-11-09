@@ -39,21 +39,21 @@ ActiveRecord::Schema.define(version: 20181107150610) do
 
   create_table "produtos", force: :cascade do |t|
     t.string   "nome"
-    t.boolean  "tipo",              null: false
-    t.float    "peso"
+    t.boolean  "tipo",              default: false
+    t.float    "peso",              default: 0.0
     t.integer  "linha"
     t.integer  "coluna"
     t.date     "validade"
     t.integer  "quantidade_minima"
     t.integer  "quantidade_maxima"
-    t.integer  "quantidade_atual"
+    t.integer  "quantidade_atual",  default: 0
     t.string   "codigo_barra"
     t.datetime "data_entrada"
     t.datetime "ultima_entrada"
     t.datetime "ultima_retirada"
     t.datetime "ultima_devolucao"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "reposicoes", force: :cascade do |t|
