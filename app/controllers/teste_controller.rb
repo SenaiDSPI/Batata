@@ -14,11 +14,6 @@ class TesteController < ActionController::Base
 		@produto.id = @id.id + 1
 		@produto.nome = params[:quantidade]
 		@produto.tipo = false
-		
-
-
-		respond_to do |format|
-			format.html { redirect_to teste_path, notice: "final: "+ @produto.save.to_s }
-		end
+		@resposta = @produto.save
 	end
 end

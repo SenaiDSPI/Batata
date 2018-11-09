@@ -21,7 +21,7 @@ class RetiradasController < ApplicationController
 
 	def info
 		@solicitacao = Solicitacao.find(params[:id])
-    @listas_produtos = ListaProdutos.where(solicitacao_id: params[:id])
+  	@listas_produtos = ListaProdutos.where(solicitacao_id: params[:id])
 	end
 
 	def update
@@ -32,8 +32,7 @@ class RetiradasController < ApplicationController
 		# Atualiza a quantidade de produtos em estoque
 		@produto = Produto.find(@lista_produtos.produto)
 		@produto.update(
-			quantidade_atual: (@produto.quantidade_atual -= @lista_produtos.quantidade),
-			ultima_retirada: Date.today
+			quantidade_atual: (@produto.quantidade_atual -= @lista_produtos.quantidade)
 		)
 
 		# Redireciona ao index

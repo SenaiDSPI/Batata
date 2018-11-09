@@ -18,8 +18,5 @@ class CreateProdutos < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-
-    add_index :produtos, :linha,                unique: true
-    add_index :produtos, :coluna,               unique: true
   end
 end

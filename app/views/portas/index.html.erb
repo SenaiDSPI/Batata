@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1>Lista para saída de produtos</h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-striped table-bordered" style="width:100%">
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Usuário</th>
+          <th>Data da solicitação</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @solicitacoes.each do |s| %>
+          <tr>
+            <td><%= s.titulo %></td>
+            <td><%= s.user.nome %></td>
+            <% unless s.data_solicitacao.nil? %>
+              <td><%= s.data_solicitacao.strftime("%d/%m/%Y %H:%M") %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td class="text-center">
+              <%= link_to porta_info_path(s) do %>
+                <i class="fas fa-info text-primary"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
