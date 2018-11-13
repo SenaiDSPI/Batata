@@ -136,10 +136,18 @@ class ComunicacaoController < ActionController::Base
 			end
 		end
 
-
-
 		if @resposta.nil?
 			@resposta = false
 		end
+
+		@url = URI('http://192.168.1.5')
+		@params = { status: 200 }
+		
+		unless @resposta
+			@params = { status: 201 }
+		end
+		
+		@url.query = URI.encode_www_form(@params)
+		Net::HTTP.get(@url)
 	end
 end

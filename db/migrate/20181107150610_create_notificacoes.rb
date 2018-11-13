@@ -5,6 +5,7 @@ class CreateNotificacoes < ActiveRecord::Migration[5.0]
       t.text :mensagem
       t.integer :cod
       t.string :tipo
+      t.belongs_to :user, foreign_key: true
 
       t.timestamps
     end
