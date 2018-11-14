@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :notificacoes
   resources :reposicoes
-  resources :reposicaos
   resources :listas_produtos
   resources :solicitacoes
   
@@ -21,7 +20,7 @@ Rails.application.routes.draw do
   get 'comunicacao/rfid/:cod', to: 'comunicacao#rfid', as: 'comunicacao_rfid'
   get 'comunicacao/variacao/:cod/:linha/:coluna/:valor', to: 'comunicacao#variacao', as: 'comunicacao_variacao'
   get 'comunicacao/erro/:cod/:tipo/:linha/:coluna', to: 'comunicacao#erro', as: 'comunicacao_erro'
-  get 'comunicacao/porta/:rfid/:peso', to: 'comunicacao#porta', as: 'comunicacao_porta'
+  get 'comunicacao/porta/:rfid', to: 'comunicacao#porta', as: 'comunicacao_porta'
   
 
   # Aprovações
@@ -43,6 +42,12 @@ Rails.application.routes.draw do
   get 'devolucoes', to: 'devolucoes#index', as: 'devolucao_index'
   get 'devolucoes/:id', to: 'devolucoes#info', as: 'devolucao_info'
   get 'devolucoes/:id/update/:id_produto/:status', to: 'devolucoes#update', as: 'devolucao_update'
+
+  # Relatorios
+  # get 'relatorios/solicitacoes', to: 'relatorios#solicitacao', as: 'relatorio_solicitacao_index'
+  # get 'relatorios/users', to: 'relatorios#user', as: 'relatorio_user_index'
+  # get 'relatorios/reposicoes re', to: 'relatorios#reposicao', as: 'relatorio_reposicao_index'
+  # get 'relatorios/produtos', to: 'relatorios#produto', as: 'relatorio_produto_index'
   
   # get 'retirada', to: 'movimentacoes#retirada'
   # get 'devolucao', to: 'movimentacoes#devolucao'

@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1>Relatorio de Produto</h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-striped table-bordered" style="width:100%">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Quantidade Atual</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @produtos.each do |produto| %>
+          <tr>
+            <td><%= produto.nome %></td>
+            <% if produto.tipo %>
+              <td>Reutilizável</td>
+            <% else %>
+              <td>Consumível</td>
+            <% end %>
+            <td><%= produto.quantidade_atual %></td>
+            <td class="text-center">
+              <%= link_to "Voltar", root_path %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

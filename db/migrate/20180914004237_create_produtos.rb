@@ -12,9 +12,6 @@ class CreateProdutos < ActiveRecord::Migration[5.0]
       t.integer :quantidade_atual,  default: 0
       t.string :codigo_barra
       t.datetime :data_entrada
-      t.datetime :ultima_entrada
-      t.datetime :ultima_retirada
-      t.datetime :ultima_devolucao
 
       t.timestamps
     end

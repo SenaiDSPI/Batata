@@ -7,6 +7,10 @@ class CreateListasProdutos < ActiveRecord::Migration[5.0]
       t.datetime :data_devolucao
       t.string :status
       t.string :observacao
+      t.datetime :ultima_aprovacao
+      t.datetime :ultima_retirada
+      t.datetime :ultima_devolucao
+      t.datetime :ultima_saida
 
       t.timestamps
     end
