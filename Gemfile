@@ -46,7 +46,7 @@ gem 'web-console', '>= 3.3.0'
 
 # Rails Admin for Superadmin
 gem 'rails_admin', '~> 1.3'
-
+gem "rails_admin_import", "~> 2.1"
 
 # Toastr for alerts
 gem 'toastr-rails'

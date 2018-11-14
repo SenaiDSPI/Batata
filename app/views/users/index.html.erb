@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
@@ -16,8 +14,8 @@
           <th>E-mail</th>
           <th>Cargo</th>
           <th>Nível de acesso</th>
-          <th colspan="3" class="text-center h5">
-            <%= link_to new_user_path, class: "ml-auto" do %>
+          <th colspan="2" class="text-center h5">
+            <%= link_to new_user_path, class: "ml-auto", title: "Criar novo usuário" do %>
               <i class="fas fa-plus text-danger"></i>
             <% end %>
           </th>
@@ -32,9 +30,8 @@
             <td><%= user.email %></td>
             <td><%= user.cargo %></td>
             <td><%= user.nivel_acesso %></td>
-            <td class="text-center px-1"><%= link_to user do %><i class="fas fa-info text-danger"></i><% end %></td>
-            <td class="text-center px-0"><%= link_to edit_user_path(user) do %><i class="fas fa-pen text-danger"></i><% end %></td>
-            <td class="text-center px-1"><%= link_to user, method: :delete, data: { confirm: 'Você tem certeza?' } do %><i class="fas fa-times text-danger"></i><% end %></td>
+            <td class="text-center px-2"><%= link_to user, title: "Detalhes" do %><i class="fas fa-info text-danger"></i><% end %></td>
+            <td class="text-center px-0"><%= link_to edit_user_path(user), title: "Editar" do %><i class="fas fa-pen text-danger"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>

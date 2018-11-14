@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
-      <h1>Lista para Retirada</h1>
+      <h1>Lista de retiradas</h1>
     </div>
   </div>
 
@@ -22,13 +21,15 @@
           <tr>
             <td><%= s.titulo %></td>
             <td><%= s.user.nome %></td>
+            
             <% if !s.data_solicitacao.nil? %>
               <td><%= s.data_solicitacao.strftime("%d/%m/%Y %H:%M") %></td>
             <% else %>
               <td></td>
             <% end %>
+
             <td class="text-center">
-              <%= link_to retirada_info_path(s) do %>
+              <%= link_to retirada_info_path(s), title: "Detalhes" do %>
                 <i class="fas fa-info text-danger"></i>
               <% end %>
             </td>

@@ -1,0 +1,33 @@
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1>Notificação</h1>
+    </div>
+  </div>
+  
+  <div class="card-body">
+		<p>
+		  <strong>Título:</strong>
+		  <%= @notificacao.titulo %>
+		</p>
+
+		<p>
+		  <strong>Mensagem:</strong>
+		  <%= @notificacao.mensagem %>
+		</p>
+
+		<p>
+		  <strong>Cod:</strong>
+		  <%= @notificacao.cod %>
+		</p>
+
+		<p>
+		  <strong>Tipo:</strong>
+		  <%= @notificacao.tipo %>
+		</p>
+
+		<div class="shared">
+      <%= link_to 'Voltar', notificacoes_path, class: "text-danger" %>
+    </div>
+  </div>
+</div>

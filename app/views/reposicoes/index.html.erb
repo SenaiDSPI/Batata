@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
@@ -13,9 +12,13 @@
           <th>Produto</th>
           <th>Quantidade</th>
           <th>Data da reposição</th>
-          <th>Usuário</th>
+
+          <% if current_user.nivel_acesso == "Admin" %>
+            <th>Usuário</th>
+          <% end %>
+
           <th colspan="2" class="text-center h5">
-            <%= link_to new_reposicao_path, class: "ml-auto" do %>
+            <%= link_to new_reposicao_path, class: "ml-auto", title: "Fazer nova reposição" do %>
               <i class="fas fa-plus text-danger"></i>
             <% end %>
           </th>
@@ -32,10 +35,13 @@
             <% else %>
               <td></td>
             <% end %>
-            <td><%= reposicao.user.nome %></td>
-            <td class="text-center px-1"><%= link_to reposicao do %><i class="fas fa-info text-danger"></i><% end %></td>
-            <!-- <td class="text-center px-0"><#%= link_to edit_reposicao_path(reposicao) do %><i class="fas fa-pen text-danger"></i><%# end %></td> -->
-            <td class="text-center px-1"><%= link_to reposicao, method: :delete, data: { confirm: 'Você tem certeza?' } do %><i class="fas fa-times text-danger"></i><% end %></td>
+
+            <% if current_user.nivel_acesso == "Admin" %>
+              <td><%= reposicao.user.nome %></td>
+            <% end %>
+
+            <td class="text-center px-2"><%= link_to reposicao, title: "Detalhes" do %><i class="fas fa-info text-danger"></i><% end %></td>
+            <td class="text-center px-1"><%= link_to reposicao, method: :delete, data: { confirm: 'Você tem certeza? Não esqueça de remover os produtos dos seus respectivos lugares.' }, title: "Apagar" do %><i class="fas fa-times text-danger"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>

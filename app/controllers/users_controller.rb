@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :is_almoxarife, only: [:new, :create]
+  before_action :is_admin, only: [:index, :show, :edit, :update]
+  before_action :is_superadmin, only: [:destroy]
 
   # GET /users
   # GET /users.json
@@ -28,7 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_path, notice: 'Usuário foi criado com sucesso.' }
+        format.html { redirect_to users_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @produto }
       else
         format.html { render :new }
@@ -41,8 +44,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(produto_params)
-        format.html { redirect_to @user, notice: 'Produto was successfully updated.' }
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'Usuário atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

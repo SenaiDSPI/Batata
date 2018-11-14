@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
-      <h1>Lista para Devolução</h1>
+      <h1>Lista de devoluções</h1>
     </div>
   </div>
 
@@ -28,7 +27,7 @@
               <td></td>
             <% end %>
             <td class="text-center">
-              <%= link_to devolucao_info_path(s) do %>
+              <%= link_to devolucao_info_path(s), title: "Detalhes" do %>
                 <i class="fas fa-info text-danger"></i>
               <% end %>
             </td>

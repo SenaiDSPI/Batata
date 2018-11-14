@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
@@ -51,16 +50,18 @@
               <tr>
                 <td><%= l.produto.nome %></td>
                 <td><%= l.quantidade %></td>
+                
                 <% if !l.data_devolucao.nil? %>
                   <td><%= l.data_devolucao.strftime("%d/%m/%Y - %H:00") %></td>          
                 <% else %>
                   <td></td>
                 <% end %>
+
                 <% if l.status == "retirado" %>
                   <td class="text-center px-1">
-                    <%= link_to devolucao_update_path(l.solicitacao, l, "devolvido"), method: :get do %>
-                      <i class="fas fa-box text-primary"></i>
-                      <i class="fas fa-arrow-left text-primary"></i>
+                    <%= link_to devolucao_update_path(l.solicitacao, l, "devolvido"), method: :get, title: "Devolver" do %>
+                      <i class="fas fa-box text-danger"></i>
+                      <i class="fas fa-arrow-left text-danger"></i>
                     <% end %>
                   </td>
                 <% else %>

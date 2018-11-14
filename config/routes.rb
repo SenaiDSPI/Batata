@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   # Rails Admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
+
   # Devise Auth
   devise_for :users
   resources :users
-  
+
   # Scaffolds
   resources :produtos
+  resources :notificacoes
   resources :reposicoes
   resources :listas_produtos
   resources :solicitacoes
@@ -17,10 +18,18 @@ Rails.application.routes.draw do
 
   # Console path
   get 'console', to: 'console#index', as: 'console'
-  
+
+  # Teste
   get 'teste', to: 'teste#index', as: 'teste'
   get 'teste/:quantidade', to: 'teste#test', as: 'test'
-  
+
+  # Comunicacao
+  get 'comunicacao', to: 'comunicacao#index', as: 'comunicacao'
+  get 'comunicacao/rfid/:cod', to: 'comunicacao#rfid', as: 'comunicacao_rfid'
+  get 'comunicacao/variacao/:cod/:linha/:coluna/:valor', to: 'comunicacao#variacao', as: 'comunicacao_variacao'
+  get 'comunicacao/erro/:cod/:tipo/:linha/:coluna', to: 'comunicacao#erro', as: 'comunicacao_erro'
+  get 'comunicacao/porta/:rfid/:peso', to: 'comunicacao#porta', as: 'comunicacao_porta'
+
   # Aprovações
   get 'aprovacoes', to: 'aprovacoes#index', as: 'aprovacao_index'
   get 'aprovacoes/:id', to: 'aprovacoes#info', as: 'aprovacao_info'

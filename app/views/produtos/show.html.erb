@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
@@ -86,9 +85,9 @@
         <%= @produto.ultima_devolucao.strftime("%d/%m/%Y") %>
       <% end %>
     </p>
+
     <div class="shared">
-      <%= link_to 'Editar', edit_produto_path(@produto) %> |
-      <%= link_to 'Voltar', produtos_path %>
+      <%= link_to 'Voltar', produtos_path, class: "text-danger" %>
     </div>
   </div>
 </div>

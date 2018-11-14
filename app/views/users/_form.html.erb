@@ -8,12 +8,18 @@
     <%= f.input :email, label: "E-mail", required: true %>
     <%= f.input :cargo, label: "Cargo", required: true %>
     <%= f.input :telefone, label: "Telefone", required: true %>
-    <%= f.input :nivel_acesso ,as: :select, collection: [['0', 'Requerente'], ['1', 'Almoxarife'], ['2', 'Admin']], label_method: :second, value_method: :second, prompt: "Escolha o tipo:", required: "required" %>
-    <%= f.input :password, label: "Senha", required: true, hint: ("Mínimo de 6 caracteres") %>
-    <%= f.input :password_confirmation, label: "Confirmar senha", required: true %>
+    
+    <% if current_user.nivel_acesso == "admin" %>
+      <%= f.input :nivel_acesso, as: :select, collection: [['0', 'Requerente'], ['1', 'Almoxarife'], ['2', 'Admin']], label_method: :second, value_method: :second, prompt: "Escolha o tipo:", required: "required" %>
+    <% else %>
+      <%= f.input :nivel_acesso, input_html: { value: "Requerente", readonly: true } %>
+    <% end %>
+
+    <%= f.input :password, label: "Senha", required: false, hint: ("Mínimo de 6 caracteres"), input_html: { required: false } %>
+    <%= f.input :password_confirmation, label: "Confirmar senha", required: false, input_html: { required: false } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Cadastrar", class: "btn btn-success" %>
+    <%= f.button :submit, "Enviar", class: "btn-success" %>
   </div>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008215414) do
+ActiveRecord::Schema.define(version: 20181107150610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,23 +28,34 @@ ActiveRecord::Schema.define(version: 20181008215414) do
     t.index ["solicitacao_id"], name: "index_listas_produtos_on_solicitacao_id", using: :btree
   end
 
+  create_table "notificacoes", force: :cascade do |t|
+    t.string   "titulo"
+    t.text     "mensagem"
+    t.integer  "cod"
+    t.string   "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "produtos", force: :cascade do |t|
     t.string   "nome"
-    t.string   "tipo"
-    t.float    "peso"
+    t.boolean  "tipo",              default: false
+    t.float    "peso",              default: 0.0
     t.integer  "linha"
     t.integer  "coluna"
     t.date     "validade"
     t.integer  "quantidade_minima"
     t.integer  "quantidade_maxima"
-    t.integer  "quantidade_atual"
+    t.integer  "quantidade_atual",  default: 0
     t.string   "codigo_barra"
-    t.date     "data_entrada"
-    t.date     "ultima_entrada"
-    t.date     "ultima_retirada"
-    t.date     "ultima_devolucao"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "data_entrada"
+    t.datetime "ultima_entrada"
+    t.datetime "ultima_retirada"
+    t.datetime "ultima_devolucao"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["coluna"], name: "index_produtos_on_coluna", unique: true, using: :btree
+    t.index ["linha"], name: "index_produtos_on_linha", unique: true, using: :btree
   end
 
   create_table "reposicoes", force: :cascade do |t|
@@ -56,6 +67,12 @@ ActiveRecord::Schema.define(version: 20181008215414) do
     t.datetime "updated_at",     null: false
     t.index ["produto_id"], name: "index_reposicoes_on_produto_id", using: :btree
     t.index ["user_id"], name: "index_reposicoes_on_user_id", using: :btree
+  end
+
+  create_table "rfids", force: :cascade do |t|
+    t.string   "cod"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "solicitacoes", force: :cascade do |t|
@@ -70,20 +87,28 @@ ActiveRecord::Schema.define(version: 20181008215414) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "nome"
+    t.string   "login"
+    t.string   "email",                  default: "",    null: false
+    t.string   "cargo"
+    t.string   "nivel_acesso"
+    t.string   "telefone"
+    t.string   "tag"
+    t.boolean  "admin",                  default: false
+    t.boolean  "ativo",                  default: true
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string   "nome"
-    t.string   "cargo"
-    t.string   "nivel_acesso"
-    t.string   "login"
-    t.string   "telefone"
-    t.string   "tag"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["login"], name: "index_users_on_login", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

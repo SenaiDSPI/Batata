@@ -1,10 +1,16 @@
 class ReposicoesController < ApplicationController
   before_action :set_reposicao, only: [:show, :edit, :update, :destroy]
+  before_action :is_almoxarife, only: [:index, :show, :new, :create, :destroy]
+  before_action :to_root, only: [:edit, :update]
 
   # GET /reposicoes
   # GET /reposicoes.json
   def index
-    @reposicoes = Reposicao.all
+    if current_user.nivel_acesso == "Admin"
+      @reposicoes = Reposicao.all
+    else
+      @reposicoes = Reposicao.where(user_id: current_user.id)
+    end
   end
 
   # GET /reposicoes/1
@@ -67,6 +73,9 @@ class ReposicoesController < ApplicationController
   # DELETE /reposicoes/1
   # DELETE /reposicoes/1.json
   def destroy
+    @produto = Produto.find(@reposicao.produto)
+    @produto.update(quantidade_atual: (@produto.quantidade_atual -= @reposicao.quantidade))
+
     @reposicao.destroy
     respond_to do |format|
       format.html { redirect_to reposicoes_url, notice: 'Reposicao was successfully destroyed.' }

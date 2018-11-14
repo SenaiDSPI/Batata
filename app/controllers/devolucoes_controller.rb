@@ -1,4 +1,6 @@
 class DevolucoesController < ApplicationController
+	before_action :is_almoxarife
+
 	def index
 		# Definição de variaveis
 		@solicitacoes = Solicitacao.all

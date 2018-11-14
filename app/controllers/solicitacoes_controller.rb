@@ -1,16 +1,26 @@
 class SolicitacoesController < ApplicationController
   before_action :set_solicitacao, only: [:show, :edit, :update, :destroy]
+  before_action :is_superadmin, only: [:edit, :update]
 
   # GET /solicitacoes
   # GET /solicitacoes.json
   def index
-    @solicitacoes = Solicitacao.all
+    if current_user.nivel_acesso == "Admin"
+      @solicitacoes = Solicitacao.all
+    else
+      @solicitacoes = Solicitacao.where(user_id: current_user.id)
+    end
   end
 
   # GET /solicitacoes/1
   # GET /solicitacoes/1.json
   def show
     @solicitacao.user = User.find(@solicitacao.user)
+
+    if @solicitacao.user != current_user
+      redirect_to root_path
+    end
+
     @listas_produtos = ListaProdutos.where(solicitacao_id: @solicitacao.id)
   end
 

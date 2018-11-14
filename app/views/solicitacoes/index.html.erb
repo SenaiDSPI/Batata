@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
@@ -11,10 +10,20 @@
       <thead>
         <tr>
           <th>Titulo</th>
-          <th>Usuário</th>
+
+          <% if current_user.nivel_acesso == "Admin" %>
+            <th>Usuário</th>
+          <% end %>
+          
           <th>Data da solicitação</th>
-          <th colspan="3" class="text-center h5">
-            <%= link_to new_solicitacao_path, class: "ml-auto" do %>
+
+          <% if current_user.admin %>
+            <th colspan="3" class="text-center h5">
+          <% else %>
+            <th colspan="2" class="text-center h5">
+          <% end %>
+
+            <%= link_to new_solicitacao_path, class: "ml-auto", title: "Criar nova" do %>
               <i class="fas fa-plus text-danger"></i>
             <% end %>
           </th>
@@ -25,15 +34,26 @@
         <% @solicitacoes.each do |solicitacao| %>
           <tr class="text">
             <td><%= solicitacao.titulo %></td>
-            <td><%= solicitacao.user.nome %></td>
+
+            <% if current_user.nivel_acesso == "Admin" %>
+              <td><%= solicitacao.user.nome %></td>
+            <% end %>
+
             <% if !solicitacao.data_solicitacao.nil? %>
               <td><%= solicitacao.data_solicitacao.strftime("%d/%m/%Y %H:%M") %></td>
             <% else %>
               <td></td>
             <% end %>
-            <td class="text-center px-1"><%= link_to solicitacao do %><i class="fas fa-info text-danger"></i><% end %></td>
-            <td class="text-center px-0"><%= link_to edit_solicitacao_path(solicitacao) do %><i class="fas fa-pen text-danger"></i><% end %></td>
-            <td class="text-center px-1"><%= link_to solicitacao, method: :delete, data: { confirm: 'Você tem certeza?' } do %><i class="fas fa-times text-danger"></i><% end %></td>
+
+            <% if current_user.admin %>
+              <td class="text-center px-1"><%= link_to solicitacao, title: "Detalhes" do %><i class="fas fa-info text-danger"></i><% end %></td>
+
+              <td class="text-center px-0"><%= link_to edit_solicitacao_path(solicitacao), title: "Editar" do %><i class="fas fa-pen text-danger"></i><% end %></td>
+            <% else %>
+              <td class="text-center px-2"><%= link_to solicitacao, title: "Detalhes" do %><i class="fas fa-info text-danger"></i><% end %></td>
+            <% end %>
+
+            <td class="text-center px-1"><%= link_to solicitacao, method: :delete, data: { confirm: 'Você tem certeza?' }, title: "Apagar" do %><i class="fas fa-times text-danger"></i><% end %></td>
           </tr>
         <% end %>
       </tbody>

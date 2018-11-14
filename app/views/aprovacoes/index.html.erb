@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
@@ -28,7 +27,7 @@
               <td></td>
             <% end %>
             <td class="text-center">
-              <%= link_to aprovacao_info_path(s) do %>
+              <%= link_to aprovacao_info_path(s), title: "Detalhes" do %>
                 <i class="fas fa-info text-danger"></i>
               <% end %>  
             </td>

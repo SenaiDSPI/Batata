@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
   <div class="card-head">
     <div class="card-title">
@@ -32,9 +30,6 @@
   </div>
 
   <div class="shared">
-    <%= link_to 'Edit', edit_lista_produtos_path(@lista_produtos, solicitacao_id: params[:solicitacao_id]) %> |
-    <%= link_to 'Back', listas_produtos_path(solicitacao_id: params[:solicitacao_id]) %>
+    <%= link_to 'Voltar', listas_produtos_path(solicitacao_id: params[:solicitacao_id]), class: "text-danger" %>
   </div>
 </div>
-
-

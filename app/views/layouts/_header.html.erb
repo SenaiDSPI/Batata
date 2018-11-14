@@ -1,105 +1,138 @@
 <nav id="sidebar" class="active">
   <div class="sidebar-header text-center">
     <button id="sidebarCollapse" class="btn btn-block text-white">
-      <h3 class="h5">&Sigma; Stock</h3>
-      <strong class="collapse h3" data-toggle="collapse" aria-expanded="false">&Sigma;</strong>
+      <h3 class="h5 mb-0"><img src="/assets/SigmaStockMini.png" width="30"> Stock</h3>
+      <strong class="collapse h3 mb-0" data-toggle="collapse" aria-expanded="false"><img src="/assets/SigmaStockMini.png" width="30"></strong>
     </button>
   </div>
+  
   <ul class="list-unstyled components">
     <li>
-      <%= link_to root_path do %>
+      <%= link_to root_path, title: "Home" do %>
         <i class="fas fa-home"></i> <span>Home</span>
       <% end %>
     </li>
 
-    <li class="dropright">
-      <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <li class="dropright pointer">
+      <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Movimentação">
         <i class="fas fa-exchange-alt"></i> <span>Movimentação</span>
       </a>
 
       <ul class="dropdown-menu bg-dark p-0 ml-0">
         <li>
-          <%= link_to "Solicitação", solicitacoes_path %>
+          <%= link_to "Solicitação", solicitacoes_path, title: "Solicitação" %>
         </li>
 
-        <li>
-          <%= link_to "Aprovação", aprovacao_index_path %>
-        </li>
+        <% unless current_user.nivel_acesso == "Requerente" %>
+          <li>
+            <%= link_to "Aprovação", aprovacao_index_path, title: "Aprovação" %>
+          </li>
 
-        <li>
-          <%= link_to "Retirada", retirada_index_path %>
-        </li>
+          <li>
+            <%= link_to "Retirada", retirada_index_path, title: "Retirada" %>
+          </li>
 
-        <li>
-          <%= link_to "Devolução", devolucao_index_path %>
-        </li>
+          <li>
+            <%= link_to "Devolução", devolucao_index_path, title: "Devolução" %>
+          </li>
 
-        <li>
-          <%= link_to "Reposição", reposicoes_path %>
-        </li>
+          <li>
+            <%= link_to "Reposição", reposicoes_path, title: "Reposição" %>
+          </li>
+        <% end %>
       </ul>
     </li>
 
-    <li class="dropright">
-      <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-plus"></i> <span>Cadastros</span>
-      </a>
+    <% unless current_user.nivel_acesso == "Requerente" %>
+      <li class="dropright pointer">
+        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Cadastros">
+          <i class="fas fa-plus"></i> <span>Cadastros</span>
+        </a>
 
-      <ul class="dropdown-menu bg-dark p-0 ml-0">
-        <li>
-          <%= link_to "Usuários", users_path %>
-        </li>
+        <ul class="dropdown-menu bg-dark p-0 ml-0">
+          <li>
+            <% if current_user.nivel_acesso == "Admin" %>
+              <%= link_to "Usuários", users_path, title: "Usuários" %>
+            <% else %>
+              <%= link_to "Usuários", new_user_path, title: "Usuários" %>
+            <% end %>
+          </li>
 
-        <li>
-          <%= link_to "Produtos", produtos_path %>
-        </li>
+          <li>
+            <%= link_to "Produtos", produtos_path, title: "Produtos" %>
+          </li>
+        </ul>
+      </li>
+    <% end %>
 
-        <li>
-          <a href="#">RF - ID</a>
-        </li>
-      </ul>
-    </li>
+    <% if current_user.nivel_acesso == "Admin" %>
+      <li class="dropright pointer">
+        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Relatórios">
+          <i class="fas fa-clipboard-list"></i> <span>Relatórios</span>
+        </a>
 
-    <li class="dropright">
-      <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-clipboard-list"></i> <span>Relatórios</span>
-      </a>
-
-      <ul class="dropdown-menu bg-dark p-0 ml-0">
-        <li>
-          <a href="#">Usuários</a>
-        </li>
-      </ul>
-    </li>
+        <ul class="dropdown-menu bg-dark p-0 ml-0">
+          <li>
+            <a href="#" title="Usuários">Usuários</a>
+          </li>
+        </ul>
+      </li>
+    <% end %>
   </ul>
 </nav>
 
 <div id="content">
   <nav class="navbar navbar-expand-lg sticky-top px-0 py-0">
     <ul class="navbar-nav ml-auto list-unstyled components">
-      <li class="nav-item">
-        <%= link_to rails_admin_path, class: "nav-link" do %>
-          <i class="fas fa-key"></i>
-        <% end %>
-        </a>
-      </li>
-
       <% if current_user.admin %>
         <li class="nav-item">
-          <%= link_to console_path, class: "nav-link" do %>
+          <%= link_to rails_admin_path, class: "nav-link", title: "Rails admin" do %>
+            <i class="fas fa-key"></i>
+          <% end %>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to console_path, class: "nav-link", title: "Console" do %>
             <i class="fas fa-terminal"></i>
           <% end %>
         </li>
       <% end %>
 
       <li class="nav-item">
-        <%= link_to edit_user_registration_path, class: "nav-link" do %>
-          <i class="fas fa-cog"></i>
-        <% end %>
+        <a class="nav-link nav-link-label" data-toggle="dropdown" aria-expanded="false" title="Notificações">
+          <% unless @notifications.nil? %>
+            <i class="fas fa-bell text-danger"></i>
+            <span class="badge badge-pill badge-default badge-danger badge-default badge-up">3</span>
+          <% else %>
+            <i class="fas fa-bell"></i>
+            <span class="badge badge-pill badge-default badge-danger badge-default badge-up">3</span>
+          <% end %>
+        </a>
+
+        <ul class="dropdown-menu bg-dark">
+          <li>
+            <a href="#">Notificação 1</a>
+          </li>
+
+          <li>
+            <a href="#">Notificação 2</a>
+          </li>
+
+          <li>
+            <a href="#">Notificação 3</a>
+          </li>
+        </ul>
       </li>
-      
+
+      <!-- <li class="nav-item">
+        <%#= link_to edit_user_registration_path, class: "nav-link" do %>
+          <i class="fas fa-cog"></i>
+        <%# end %>
+      </li> -->
+
       <li class="nav-item">
-        <%= link_to destroy_user_session_path, class: "nav-link", method: :delete do %>
+        <%= link_to destroy_user_session_path, class: "nav-link", method: :delete, title: "Sair" do %>
           <i class="fas fa-sign-out-alt"></i>
         <% end %>
       </li>
