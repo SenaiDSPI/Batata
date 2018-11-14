@@ -54,8 +54,6 @@ ActiveRecord::Schema.define(version: 20181107150610) do
     t.datetime "ultima_devolucao"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.index ["coluna"], name: "index_produtos_on_coluna", unique: true, using: :btree
-    t.index ["linha"], name: "index_produtos_on_linha", unique: true, using: :btree
   end
 
   create_table "reposicoes", force: :cascade do |t|

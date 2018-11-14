@@ -29,6 +29,12 @@ class ProdutosController < ApplicationController
     @produto.data_entrada = Date.today
     @produto.quantidade_atual = 0;
 
+    @tmp = Produto.where(linha: @produto.linha, coluna: @produto.coluna)[0]
+
+    unless @tmp.nil?
+      # Tem que impedir cadastros com a mesma linha e coluna
+    end
+
     respond_to do |format|
       if @produto.save
         format.html { redirect_to produtos_path, notice: 'Produto was successfully created.' }

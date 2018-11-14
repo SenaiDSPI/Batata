@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Porta Arduino</title>
-</head>
-<body>
-	<%= @resposta %>
-</body>
-</html>
-<!-- <%# console %> -->
+<% if @resposta %>
+<script>
+	$.ajax({
+		url: "http://192.168.1.5",
+		method: "GET",
+		data: {status: 200}
+	});
+</script>
+<% else %>
+	<script>
+		$.ajax({
+			url: "http://192.168.1.5",
+			method: "GET",
+			data: {status: 201}
+		});
+	</script>
+<% end %>

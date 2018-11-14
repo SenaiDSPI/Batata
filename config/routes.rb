@@ -35,6 +35,11 @@ Rails.application.routes.draw do
   get 'aprovacoes/:id', to: 'aprovacoes#info', as: 'aprovacao_info'
   get 'aprovacoes/:id/update/:id_produto/:status', to: 'aprovacoes#update', as: 'aprovacao_update'
 
+  # Porta (saida)
+  get 'saida', to: 'portas#index', as: 'porta_index'
+  get 'saida/:id', to: 'portas#info', as: 'porta_info'
+  get 'saida/:id/update/:id_produto/:status', to: 'portas#update', as: 'porta_update'
+
   # Retirada
   get 'retiradas', to: 'retiradas#index', as: 'retirada_index'
   get 'retiradas/:id', to: 'retiradas#info', as: 'retirada_info'

@@ -1,7 +1,8 @@
 class ComunicacaoController < ActionController::Base
 	def index
 		@rfids = Rfid.all
-		@ts = Notificacao.all
+		@notificacoes = Notificacao.all
+		@resposta = params[:format]
 	end
 
 	def rfid
@@ -14,30 +15,47 @@ class ComunicacaoController < ActionController::Base
 
 		@rfid.cod = params[:cod]
 
-		respond_to do |format|
-			format.html { redirect_to comunicacao_path, notice: "Rfid atualizado: "+ @rfid.update(cod: @rfid.cod).to_s }
-		end
+		@resposta = "Rfid atualizado: "+ @rfid.update(cod: @rfid.cod).to_s
+
+		redirect_to comunicacao_path
 	end
 
 	def variacao
 		if params[:cod].to_i == 2 # Balança
 			@produto = Produto.where(linha: params[:linha], coluna: params[:coluna])[0]
-			
+
+			# Resolver multiplos
+			@listas_produtos = ListaProdutos.where(status: "saida")
+
+			# Fim multiplos
 			unless @produto.nil?
-				@peso_total = @produto.peso * @produto.quantidade_atual
-				@peso_atual = params[:valor]
+				unless @listas_produtos[0].nil?
+					@peso_total = params[:valor].to_f / 10 # Conversão para float
+					# Arruma peso atual e já era
+					@peso_atual = 0
+					@listas_produtos.each do |tmp|
+						@peso_atual += @produto.peso * tmp.quantidade
+					end
 
-				@notificacao = Notificacao.new
-				@notificacao.titulo = "Variação na Balança"
-				@notificacao.mensagem = "Houve uma variação na balança de " + @peso_total.to_s + "Kg, para " + @peso_atual.to_s + "Kg.\nLinha: " + @produto.linha.to_s + ".\nColuna: " + @produto.coluna.to_s
-				@notificacao.cod = 1
-				@notificacao.tipo = "alerta"
-				@notificacao.save
+					if @peso_total != @peso_atual
+						@notificacao = Notificacao.new
+						@notificacao.titulo = "Variação na Balança"
+						@notificacao.mensagem = "Houve uma variação na balança de " + @peso_total.to_s + "Kg, para " + @peso_atual.to_s + "Kg.\nLinha: " + @produto.linha.to_s + ".\nColuna: " + @produto.coluna.to_s
+						@notificacao.cod = 1
+						@notificacao.tipo = "alerta"
+						@notificacao.save
 
-				respond_to do |format|
-					format.html { redirect_to comunicacao_path, notice: "Notificação criada!" }
+						@resposta = "Notificação criada!"
+					end
+					if @resposta.nil?
+						@resposta = "Peso identico! (Nada muda)"
+					end
+				
+				else
+					@resposta = "Pedidos não existentes! (Nada muda)"
 				end
 			end
+
 		elsif params[:cod].to_i == 3 # Ultrasson
 			@produto = Produto.where(linha: params[:linha], coluna: params[:coluna])[0]
 			
@@ -49,21 +67,16 @@ class ComunicacaoController < ActionController::Base
 				@notificacao.tipo = "alerta"
 				@notificacao.save
 
-				respond_to do |format|
-					format.html { redirect_to comunicacao_path, notice: "Notificação criada!" }
-				end
+				@resposta = "Notificação criada!"
 			end
 		else
-			respond_to do |format|
-				format.html { redirect_to comunicacao_path, notice: "Código inválido."  }
-			end
+			@resposta = "Código inválido."
 		end
 		
-		if notice.nil?
-			respond_to do |format|
-				format.html { redirect_to comunicacao_path, notice: "Produto não encontrado."  }
-			end
+		if @resposta.nil?
+			@resposta = "Produto não encontrado."
 		end
+		redirect_to comunicacao_path(@resposta)
 	end
 
 	def erro
@@ -81,22 +94,17 @@ class ComunicacaoController < ActionController::Base
 					@notificacao.tipo = "erro"
 					@notificacao.save
 
-					respond_to do |format|
-						format.html { redirect_to comunicacao_path, notice: "Notificação criada!" }
-					end
+					@resposta = "Notificação criada!"
 				end
 			else
-				respond_to do |format|
-				format.html { redirect_to comunicacao_path, notice: "Código inválido."  }
-			end
+				@resposta = "Código inválido."
 			end
 		end
 
 		if notice.nil?
-			respond_to do |format|
-				format.html { redirect_to comunicacao_path, notice: "Produto não encontrado."  }
-			end
+			@resposta = "Produto não encontrado."
 		end
+		redirect_to comunicacao_path
 	end
 
 	def porta
@@ -105,13 +113,24 @@ class ComunicacaoController < ActionController::Base
 			@solicitacoes = Solicitacao.where(user_id: @user)
 			@pedidos = []
 			@solicitacoes.each do |s|
-				@pedidos.push(ListaProdutos.where(status: "liberado", solicitacao: s))
+				@tmp = ListaProdutos.where(status: "saida", solicitacao: s)[0]
+				unless @tmp.nil?
+					@pedidos.push(@tmp)
+				end
 			end
+
 			unless @pedidos[0].nil?
+				@peso_atual = params[:peso].to_f / 10
+
+				@peso_total = 0
 				@pedidos.each do |pedido|
-					pedido.peso_total = pedido.produto.peso * pedido.produto.quantidade_atual
-					if peso_total == params[:peso]
-						@resposta = true
+					@peso_total += pedido.produto.peso * pedido.quantidade
+				end
+
+				if @peso_total == @peso_atual
+					@resposta = true
+					@pedidos.each do |pedido|
+						pedido.update(status: "retirado")
 					end
 				end
 			end
@@ -120,5 +139,15 @@ class ComunicacaoController < ActionController::Base
 		if @resposta.nil?
 			@resposta = false
 		end
+
+		@url = URI('http://192.168.1.5')
+		@params = { status: 200 }
+		
+		unless @resposta
+			@params = { status: 201 }
+		end
+		
+		@url.query = URI.encode_www_form(@params)
+		Net::HTTP.get(@url)
 	end
 end

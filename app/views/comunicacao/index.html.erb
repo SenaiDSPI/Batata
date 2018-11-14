@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-	<p class="notice"><%= notice %></p>
+	<p class="notice"><%= @resposta %></p>
 	<div class="container">
 		<h1>Testes</h1>
 		<h3>RF-ID's</h3>
@@ -41,13 +41,13 @@
 		  </thead>
 
 		  <tbody>
-		    <% @ts.each do |t| %>
+		    <% @notificacoes.each do |notificacao| %>
 		      <tr>
-		        <td><%= t.titulo %></td>
-		        <td><%= t.mensagem %></td>
-		        <td><%= t.cod %></td>
-		        <td><%= t.tipo %></td>
-		        <td><%= t.created_at %></td>
+		        <td><%= notificacao.titulo %></td>
+		        <td><%= notificacao.mensagem %></td>
+		        <td><%= notificacao.cod %></td>
+		        <td><%= notificacao.tipo %></td>
+		        <td><%= notificacao.created_at %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>
@@ -55,4 +55,4 @@
 	</div>
 </body>
 </html>
-<!-- <%# console %> -->
+<% console %>

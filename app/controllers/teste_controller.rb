@@ -1,3 +1,5 @@
+require 'net/http'
+
 class TesteController < ActionController::Base
 	def index
 		@produtos = Produto.all
@@ -14,6 +16,14 @@ class TesteController < ActionController::Base
 		@produto.id = @id.id + 1
 		@produto.nome = params[:quantidade]
 		@produto.tipo = false
-		@resposta = @produto.save
+
+		if @produto.save
+			@url = URI('http://192.168.1.5')
+			@params = { status: 200 }
+
+			@url.query = URI.encode_www_form(@params)
+
+			Net::HTTP.get(@url)
+		end
 	end
 end
