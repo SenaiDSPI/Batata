@@ -44,10 +44,10 @@ Rails.application.routes.draw do
   get 'devolucoes/:id/update/:id_produto/:status', to: 'devolucoes#update', as: 'devolucao_update'
 
   # Relatorios
-  # get 'relatorios/solicitacoes', to: 'relatorios#solicitacao', as: 'relatorio_solicitacao_index'
-  # get 'relatorios/users', to: 'relatorios#user', as: 'relatorio_user_index'
-  # get 'relatorios/reposicoes re', to: 'relatorios#reposicao', as: 'relatorio_reposicao_index'
-  # get 'relatorios/produtos', to: 'relatorios#produto', as: 'relatorio_produto_index'
+  get 'relatorios/solicitacoes', to: 'relatorios#solicitacao', as: 'relatorio_solicitacao_index'
+  get 'relatorios/users', to: 'relatorios#user', as: 'relatorio_user_index'
+  get 'relatorios/reposicoes re', to: 'relatorios#reposicao', as: 'relatorio_reposicao_index'
+  get 'relatorios/produtos', to: 'relatorios#produto', as: 'relatorio_produto_index'
   
   # get 'retirada', to: 'movimentacoes#retirada'
   # get 'devolucao', to: 'movimentacoes#devolucao'
