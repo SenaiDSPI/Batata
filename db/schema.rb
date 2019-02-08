@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20181107150610) do
     t.text     "mensagem"
     t.integer  "cod"
     t.string   "tipo"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notificacoes_on_user_id", using: :btree
   end
 
   create_table "produtos", force: :cascade do |t|
@@ -112,6 +114,7 @@ ActiveRecord::Schema.define(version: 20181107150610) do
 
   add_foreign_key "listas_produtos", "produtos"
   add_foreign_key "listas_produtos", "solicitacoes"
+  add_foreign_key "notificacoes", "users"
   add_foreign_key "reposicoes", "produtos"
   add_foreign_key "reposicoes", "users"
   add_foreign_key "solicitacoes", "users"

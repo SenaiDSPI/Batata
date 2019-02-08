@@ -9,7 +9,7 @@
     <%= f.input :cargo, label: "Cargo", required: true %>
     <%= f.input :telefone, label: "Telefone", required: true %>
     
-    <% if current_user.nivel_acesso == "admin" %>
+    <% if current_user.nivel_acesso == "Admin" %>
       <%= f.input :nivel_acesso, as: :select, collection: [['0', 'Requerente'], ['1', 'Almoxarife'], ['2', 'Admin']], label_method: :second, value_method: :second, prompt: "Escolha o tipo:", required: "required" %>
     <% else %>
       <%= f.input :nivel_acesso, input_html: { value: "Requerente", readonly: true } %>

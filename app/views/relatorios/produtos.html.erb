@@ -1,0 +1,35 @@
+<div class="card bg-white text-danger mt-3 mb-3 px-5 pt-3 pb-1 shadow">
+  <div class="card-head">
+    <div class="card-title">
+      <h1>Relatório de produtos</h1>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-striped table-bordered" style="width:100%">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Linha</th>
+          <th>Coluna</th>
+          <th>Total de entradas</th>
+          <th>Quantidade atual</th>
+          <th>Total de saídas</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @produtos_total.each do |total| %>
+          <tr>
+            <td><%= total[2] %></td>
+            <td><%= total[2] %></td>
+            <td><%= total[2] %></td>
+            <td><%= total[0] %></td>
+            <td><%= total[2] %></td>
+            <td><%= total[1] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

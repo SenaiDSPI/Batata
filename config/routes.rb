@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'comunicacao/rfid/:cod', to: 'comunicacao#rfid', as: 'comunicacao_rfid'
   get 'comunicacao/variacao/:cod/:linha/:coluna/:valor', to: 'comunicacao#variacao', as: 'comunicacao_variacao'
   get 'comunicacao/erro/:cod/:tipo/:linha/:coluna', to: 'comunicacao#erro', as: 'comunicacao_erro'
-  get 'comunicacao/porta/:rfid/:peso', to: 'comunicacao#porta', as: 'comunicacao_porta'
+  get 'comunicacao/porta/:rfid', to: 'comunicacao#porta', as: 'comunicacao_porta'
 
   # Aprovações
   get 'aprovacoes', to: 'aprovacoes#index', as: 'aprovacao_index'
@@ -49,4 +49,8 @@ Rails.application.routes.draw do
   get 'devolucoes', to: 'devolucoes#index', as: 'devolucao_index'
   get 'devolucoes/:id', to: 'devolucoes#info', as: 'devolucao_info'
   get 'devolucoes/:id/update/:id_produto/:status', to: 'devolucoes#update', as: 'devolucao_update'
+
+  # Relatorios
+  get 'relatorios/produtos', to: 'relatorios#produtos', as: 'relatorios_produtos_index'
+  get 'relatorios/reposicoes', to: 'relatorios#reposicoes', as: 'relatorios_reposicoes_index'
 end

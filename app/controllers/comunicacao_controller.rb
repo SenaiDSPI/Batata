@@ -111,34 +111,38 @@ class ComunicacaoController < ActionController::Base
 		@user = User.where(tag: params[:rfid])[0]
 		unless @user.nil?
 			@solicitacoes = Solicitacao.where(user_id: @user)
-			@pedidos = []
-			@solicitacoes.each do |s|
-				@tmp = ListaProdutos.where(status: "saida", solicitacao: s)[0]
-				unless @tmp.nil?
-					@pedidos.push(@tmp)
-				end
+			unless @user.nil?
+				@resposta = true
 			end
+			
+			# @pedidos = []
+			# @solicitacoes.each do |s|
+			# 	@tmp = ListaProdutos.where(status: "saida", solicitacao: s)[0]
+			# 	unless @tmp.nil?
+			# 		@pedidos.push(@tmp)
+			# 	end
+			# end
 
-			unless @pedidos[0].nil?
-				@peso_atual = params[:peso].to_f / 10
+			# unless @pedidos[0].nil?
+			# 	@peso_atual = params[:peso].to_f / 10
 
-				@peso_total = 0
-				@pedidos.each do |pedido|
-					@peso_total += pedido.produto.peso * pedido.quantidade
-				end
+			# 	@peso_total = 0
+			# 	@pedidos.each do |pedido|
+			# 		@peso_total += pedido.produto.peso * pedido.quantidade
+			# 	end
 
-				if @peso_total == @peso_atual
-					@resposta = true
-					@pedidos.each do |pedido|
-						pedido.update(status: "retirado")
-					end
-				end
-			end
+			# 	if @peso_total == @peso_atual
+			# 		@resposta = true
+			# 		@pedidos.each do |pedido|
+			# 			pedido.update(status: "retirado")
+			# 		end
+			# 	end
+			# end
 		end
 
-		if @resposta.nil?
-			@resposta = false
-		end
+		# if @resposta.nil?
+		# 	@resposta = false
+		# end
 
 		@url = URI('http://192.168.1.5')
 		@params = { status: 200 }
